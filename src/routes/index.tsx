@@ -3,7 +3,15 @@ import { createBrowserRouter } from 'react-router-dom';
 import { ROUTES } from './routes.const';
 
 import { Layout } from 'src/components';
-import { ErrorPage, RequestsPage, CreateRequestPage, OrderPage, DeliverPage } from 'src/pages';
+import {
+  ErrorPage,
+  RequestsPage,
+  CreateRequestPage,
+  OrderPage,
+  DeliverPage,
+  RegisterPage,
+  LoginPage,
+} from 'src/pages';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +34,14 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.CREATE_DELIVER,
         element: <DeliverPage />,
+      },
+      {
+        path: ROUTES.REGISTER,
+        element: <RegisterPage />,
+      },
+      {
+        path: ROUTES.LOGIN,
+        element: <LoginPage />,
       },
     ],
   },
