@@ -7,5 +7,7 @@ export {AuthNav} from './AuthNav/AuthNav';
 export {CreateOrderForm} from './CreateOrderForm/CreateOrderForm';
 export {CreateDeliverForm} from './CreateDeliverForm/CreateDeliverForm';
 export {LoginForm} from './LoginForm/LoginForm';
+export {ParcelsList} from './ParcelsList/ParcelsList';
+export {ParcelItem} from './ParcelItem/ParcelItem';
 export {RegisterForm} from './RegisterForm/RegisterForm';
 export {App} from './App';

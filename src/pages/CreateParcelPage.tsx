@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { ROUTES } from 'src/routes/routes.const';
 
-function CreateRequestPage() {
+function CreateParcelPage() {
   return (
     <ul>
       <li>
@@ -15,4 +15,4 @@ function CreateRequestPage() {
   );
 }
 
-export default CreateRequestPage;
+export default CreateParcelPage;
