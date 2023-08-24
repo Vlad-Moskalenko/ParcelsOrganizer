@@ -12,6 +12,8 @@ import {
   RegisterPage,
   LoginPage,
 } from 'src/pages';
+import { RestrictedRoute } from './RestrictedRoutes';
+import { PrivateRoute } from './PrivateRoute';
 
 export const router = createBrowserRouter([
   {
@@ -29,19 +31,19 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTES.CREATE_ORDER,
-        element: <OrderPage />,
+        element: <PrivateRoute redirectTo="/login" component={OrderPage} />,
       },
       {
         path: ROUTES.CREATE_DELIVER,
-        element: <DeliverPage />,
+        element: <PrivateRoute redirectTo="/login" component={DeliverPage} />,
       },
       {
         path: ROUTES.REGISTER,
-        element: <RegisterPage />,
+        element: <RestrictedRoute redirectTo="/requests" component={RegisterPage} />,
       },
       {
         path: ROUTES.LOGIN,
-        element: <LoginPage />,
+        element: <RestrictedRoute redirectTo="/requests" component={LoginPage} />,
       },
     ],
   },
