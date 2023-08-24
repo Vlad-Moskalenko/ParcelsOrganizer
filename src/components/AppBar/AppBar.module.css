@@ -1,0 +1,13 @@
+.header {
+  position: fixed;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+
+  background-color: #fff;
+  border-bottom: 1px solid #2a363b;
+}

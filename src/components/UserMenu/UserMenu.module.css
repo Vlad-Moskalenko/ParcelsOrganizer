@@ -1,0 +1,25 @@
+.wrapper {
+  padding-right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.username {
+  font-weight: 700;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+  opacity: 0.5;
+
+  transition: opacity 0.25s ease-out;
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+  opacity: 1;
+}

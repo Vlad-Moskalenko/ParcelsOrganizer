@@ -2,13 +2,6 @@ import { useState } from 'react';
 
 import s from './CreateOrderFrom.module.css';
 
-// type OrderData = {
-//   location: string;
-//   destination: string;
-//   type: 'gadgets' | 'drinks' | 'clothes' | 'medicines' | 'other';
-//   date: string;
-// };
-
 const INITIAL_STATE = {
   location: '',
   destination: '',
