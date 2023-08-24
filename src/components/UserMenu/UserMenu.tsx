@@ -12,7 +12,7 @@ export const UserMenu = () => {
 
   return (
     <div className={s.wrapper}>
-      <p className={s.username}>Welcome, {user.name}</p>
+      <p className={s.username}>Welcome</p>
       <button className={s.logoutBtn} type="button" onClick={() => dispatch(logout())}>
         <FiLogOut style={{ width: 25, height: 25 }} />
       </button>

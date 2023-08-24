@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { useAuth } from 'src/hooks/useAuth';
-import { refresh } from 'src/redux/auth/authOperations';
+import { current } from 'src/redux/auth/authOperations';
 import { router } from 'src/routes';
 import { Spinner } from './Spinner/Spinner';
 import { useAppSelector } from 'src/hooks/useAppSelector';
@@ -15,7 +15,7 @@ export const App = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(refresh());
+      dispatch(current());
     }
   }, [dispatch, token]);
 

@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import {login, register, refresh, logout} from './authOperations'
+import {login, register, current, logout} from './authOperations'
 import { UserState } from "src/entities/UserState";
 
 export type AuthState = {
@@ -48,7 +48,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.isRefreshing = false;
     })
-    .addCase(refresh.fulfilled, (state, action: PayloadAction<UserState>) =>{
+    .addCase(current.fulfilled, (state, action: PayloadAction<UserState>) =>{
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
