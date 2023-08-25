@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import s from './DeliverFrom.module.css';
-import { addDeliver } from 'src/services/parcelsApi';
+import { addDeliver, updateDeliver } from 'src/services/parcelsApi';
 import { ParcelState } from 'src/entities/ParcelState';
+import { useParcels } from 'src/hooks/useParcels';
 
 const INITIAL_STATE = {
   _id: '',
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
 export const DeliverForm = (data: ParcelState) => {
   const [deliverData, setDeliverData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
+  const { refetch } = useParcels();
 
   const handleDeliverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,6 +25,14 @@ export const DeliverForm = (data: ParcelState) => {
 
   const handleDeliverSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { location, destination, date, _id } = deliverData;
+
+    if (deliverData._id) {
+      updateDeliver({ id: _id, data: { location, destination, date } });
+      refetch();
+      return;
+    }
+
     addDeliver(deliverData).then(() => {
       setDeliverData(INITIAL_STATE);
       navigate('/requests');

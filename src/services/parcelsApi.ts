@@ -2,6 +2,11 @@ import { ParcelState } from "src/entities/ParcelState";
 import { axiosInstance } from "./axiosConfig";
 import { toast } from "react-toastify";
 
+type UpdateParcel = {
+  id: string;
+  data: Partial<ParcelState>;
+}
+
 const getParcelsList = async () => {
   try {
     const resp = await axiosInstance.get('/parcels')
@@ -47,13 +52,22 @@ const removeParcel = async (id:string) => {
   }
 };
 
-const updateParcel = async (id:string) => {
+const updateOrder = async ({id, data}: UpdateParcel) => {
   try {
-    const resp = await axiosInstance.put(`/parcels/${id}`)
+    const resp = await axiosInstance.put(`/parcels/order/${id}`, data)
     return resp.data
   } catch (err) {
     toast.error(err.response.data.message);
   }
 };
 
-export {getParcelsList, getParcelById, addOrder, addDeliver, updateParcel, removeParcel }
+const updateDeliver = async ({id, data}: UpdateParcel) => {
+  try {
+    const resp = await axiosInstance.put(`/parcels/deliver/${id}`, data)
+    return resp.data
+  } catch (err) {
+    toast.error(err.response.data.message);
+  }
+};
+
+export {getParcelsList, getParcelById, addOrder, addDeliver, updateOrder, updateDeliver, removeParcel }

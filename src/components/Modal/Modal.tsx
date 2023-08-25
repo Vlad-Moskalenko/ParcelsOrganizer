@@ -25,11 +25,19 @@ export const Modal = ({ setIsOpen, data }: ModalProps) => {
     };
   }, [setIsOpen]);
 
+  const closeModalClick = (
+    e: React.MouseEvent<HTMLDivElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    if (e.target === e.currentTarget) {
+      setIsOpen(false);
+    }
+  };
+
   const modalRoot = document.querySelector('#modal-root');
 
   return createPortal(
-    <div onClick={() => setIsOpen(false)} className={s.backdrop}>
-      <button onClick={() => setIsOpen(false)}>Close</button>
+    <div onClick={closeModalClick} className={s.backdrop}>
+      <button onClick={closeModalClick}>Close</button>
       <div className={s.modal}>
         <OrderForm data={data} />
       </div>

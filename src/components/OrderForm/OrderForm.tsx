@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { addOrder } from 'src/services/parcelsApi';
+import { addOrder, updateOrder } from 'src/services/parcelsApi';
 import { ParcelState } from 'src/entities/ParcelState';
 import s from './OrderFrom.module.css';
+import { useParcels } from 'src/hooks/useParcels';
 
 const INITIAL_STATE: ParcelState = {
   _id: '',
@@ -19,9 +20,9 @@ type OrderFormProps = {
 };
 
 export const OrderForm = ({ data }: OrderFormProps) => {
-  console.log(data);
   const [orderData, setOrderData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
+  const { refetch } = useParcels();
 
   const handleOrderChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>
@@ -32,6 +33,14 @@ export const OrderForm = ({ data }: OrderFormProps) => {
 
   const handleOrderSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { location, destination, type, date, description, _id } = orderData;
+
+    if (orderData._id) {
+      updateOrder({ id: _id, data: { location, destination, type, date, description } });
+      refetch();
+      return;
+    }
+
     addOrder(orderData).then(() => {
       setOrderData(INITIAL_STATE);
       navigate('/requests');
