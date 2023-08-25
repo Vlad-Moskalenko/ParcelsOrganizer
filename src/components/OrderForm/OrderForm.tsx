@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { addOrder } from 'src/services/parcelsApi';
 import { ParcelState } from 'src/entities/ParcelState';
-import s from './CreateOrderFrom.module.css';
+import s from './OrderFrom.module.css';
 
 const INITIAL_STATE: ParcelState = {
+  _id: '',
   location: '',
   destination: '',
   type: 'other',
@@ -13,8 +14,13 @@ const INITIAL_STATE: ParcelState = {
   description: '',
 };
 
-export const CreateOrderForm = () => {
-  const [orderData, setOrderData] = useState(INITIAL_STATE);
+type OrderFormProps = {
+  data: ParcelState;
+};
+
+export const OrderForm = ({ data }: OrderFormProps) => {
+  console.log(data);
+  const [orderData, setOrderData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
 
   const handleOrderChange = (

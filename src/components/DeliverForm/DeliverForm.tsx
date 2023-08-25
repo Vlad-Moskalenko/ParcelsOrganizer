@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import s from './CreateDeliverFrom.module.css';
+import s from './DeliverFrom.module.css';
 import { addDeliver } from 'src/services/parcelsApi';
+import { ParcelState } from 'src/entities/ParcelState';
 
 const INITIAL_STATE = {
+  _id: '',
   location: '',
   destination: '',
   date: '',
 };
 
-export const CreateDeliverForm = () => {
-  const [deliverData, setDeliverData] = useState(INITIAL_STATE);
+export const DeliverForm = (data: ParcelState) => {
+  const [deliverData, setDeliverData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
 
   const handleDeliverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
