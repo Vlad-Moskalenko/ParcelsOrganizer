@@ -1,20 +1,10 @@
 import { ParcelsList } from 'src/components';
-import { useEffect, useState } from 'react';
-import { getParcelsList } from 'src/services/parcelsApi';
-import { useAuth } from 'src/hooks/useAuth';
+import { useParcels } from 'src/hooks/useParcels';
 
 function ParcelsPage() {
-  const [parcels, setParcels] = useState();
-  const { isRefreshing, isLoggedIn } = useAuth();
+  const { data } = useParcels();
 
-  useEffect(() => {
-    if (!isRefreshing && isLoggedIn)
-      getParcelsList()
-        .then(resp => setParcels(resp))
-        .catch(err => console.log(err));
-  }, [isRefreshing, isLoggedIn]);
-
-  return parcels && <ParcelsList list={parcels} />;
+  return data && <ParcelsList list={data} />;
 }
 
 export default ParcelsPage;
