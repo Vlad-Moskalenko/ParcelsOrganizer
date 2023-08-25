@@ -1,16 +1,18 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import s from './CreateDeliverFrom.module.css';
+import { addDeliver } from 'src/services/parcelsApi';
 
 const INITIAL_STATE = {
   location: '',
   destination: '',
   date: '',
-  description: '',
 };
 
 export const CreateDeliverForm = () => {
   const [deliverData, setDeliverData] = useState(INITIAL_STATE);
+  const navigate = useNavigate();
 
   const handleDeliverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,6 +21,10 @@ export const CreateDeliverForm = () => {
 
   const handleDeliverSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addDeliver(deliverData).then(() => {
+      setDeliverData(INITIAL_STATE);
+      navigate('/requests');
+    });
   };
 
   const { location, destination, date } = deliverData;

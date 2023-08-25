@@ -1,5 +1,5 @@
 export type ParcelState = {
-  _id: string;
+  _id?: string;
   location: string;
   destination: string;
   type?: 'gadgets' | 'drinks' | 'clothes' | 'medicines' | 'other';

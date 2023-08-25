@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { addOrder } from 'src/services/parcelsApi';
+import { ParcelState } from 'src/entities/ParcelState';
 import s from './CreateOrderFrom.module.css';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: ParcelState = {
   location: '',
   destination: '',
   type: 'other',
@@ -12,6 +15,7 @@ const INITIAL_STATE = {
 
 export const CreateOrderForm = () => {
   const [orderData, setOrderData] = useState(INITIAL_STATE);
+  const navigate = useNavigate();
 
   const handleOrderChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>
@@ -22,6 +26,10 @@ export const CreateOrderForm = () => {
 
   const handleOrderSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addOrder(orderData).then(() => {
+      setOrderData(INITIAL_STATE);
+      navigate('/requests');
+    });
   };
 
   const { location, destination, type, date, description } = orderData;
