@@ -13,7 +13,7 @@ const getParcelsList = async () => {
 
 const getParcelById = async (id: string) => {
   try {
-    const resp = await axiosInstance.get('/parcels', {params: {id}})
+    const resp = await axiosInstance.get(`/parcels/${id}`)
     return resp.data
   } catch (err) {
     toast.error(err.response.data.message);
@@ -31,7 +31,7 @@ const addOrder = async (data: ParcelState) => {
 
 const addDeliver = async (data: ParcelState) => {
   try {
-    const resp = await axiosInstance.post('/parcels/delive', data)
+    const resp = await axiosInstance.post('/parcels/deliver', data)
     return resp.data
   } catch (err) {
     toast.error(err.response.data.message);
@@ -40,7 +40,7 @@ const addDeliver = async (data: ParcelState) => {
 
 const removeParcel = async (id:string) => {
   try {
-    const resp = await axiosInstance.post('/parcels', {params: {id}})
+    const resp = await axiosInstance.delete(`/parcels/${id}`)
     return resp.data
   } catch (err) {
     toast.error(err.response.data.message);
@@ -49,7 +49,7 @@ const removeParcel = async (id:string) => {
 
 const updateParcel = async (id:string) => {
   try {
-    const resp = await axiosInstance.post('/parcels', {params: {id}})
+    const resp = await axiosInstance.put(`/parcels/${id}`)
     return resp.data
   } catch (err) {
     toast.error(err.response.data.message);
