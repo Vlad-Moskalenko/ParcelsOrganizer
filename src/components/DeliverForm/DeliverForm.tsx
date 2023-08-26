@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import s from './DeliverFrom.module.css';
-import { addDeliver, updateDeliver } from 'src/services/parcelsApi';
 import { ParcelState } from 'src/entities/ParcelState';
-import { useParcels } from 'src/hooks/useParcels';
+import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
+
+import s from './DeliverFrom.module.css';
 
 const INITIAL_STATE = {
   _id: '',
@@ -13,10 +14,14 @@ const INITIAL_STATE = {
   date: '',
 };
 
-export const DeliverForm = (data: ParcelState) => {
+type DeliverFormProps = {
+  data?: ParcelState;
+};
+
+export const DeliverForm = ({ data }: DeliverFormProps) => {
   const [deliverData, setDeliverData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
-  const { refetch } = useParcels();
+  const dispatch = useAppDispatch();
 
   const handleDeliverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,18 +30,14 @@ export const DeliverForm = (data: ParcelState) => {
 
   const handleDeliverSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { location, destination, date, _id } = deliverData;
-
-    if (deliverData._id) {
-      updateDeliver({ id: _id, data: { location, destination, date } });
-      refetch();
+    if (data) {
+      dispatch(updateParcel(deliverData));
       return;
     }
 
-    addDeliver(deliverData).then(() => {
-      setDeliverData(INITIAL_STATE);
-      navigate('/requests');
-    });
+    dispatch(addParcel({ ...deliverData, parcelType: 'deliver' }));
+    setDeliverData(INITIAL_STATE);
+    navigate('/requests');
   };
 
   const { location, destination, date } = deliverData;

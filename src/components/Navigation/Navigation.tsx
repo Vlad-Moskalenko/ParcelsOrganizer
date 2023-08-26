@@ -8,10 +8,10 @@ export const Navigation = () => {
   return (
     <nav>
       <NavLink className={s.link} to={ROUTES.REQUESTS}>
-        Requests
+        Parcels
       </NavLink>
       <NavLink className={s.link} to={ROUTES.CREATE_REQUEST}>
-        Create Request
+        Create Parcel
       </NavLink>
     </nav>
   );

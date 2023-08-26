@@ -1,22 +1,26 @@
 import { useState } from 'react';
 
 import { ParcelState } from 'src/entities/ParcelState';
-import s from './ParcelItem.module.css';
 import { Modal } from '..';
+
+import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { removeParcel } from 'src/redux/parcels/parcelsSlice';
+import s from './ParcelItem.module.css';
 
 type ParcelProps = {
   data: ParcelState;
-  handleDeleteClick: (id: string) => void;
 };
 
-export const ParcelItem = ({ data, handleDeleteClick }: ParcelProps) => {
+export const ParcelItem = ({ data }: ParcelProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
+  const handleDeleteClick = () => {
+    dispatch(removeParcel(data._id));
   };
 
-  const { location, destination, type, description, date, _id } = data;
+  const { location, destination, type, description, date } = data;
+
   return (
     <>
       <li className={s.item}>
@@ -26,10 +30,10 @@ export const ParcelItem = ({ data, handleDeleteClick }: ParcelProps) => {
         <span>Description: {description}</span>
         <span>Date: {date}</span>
 
-        <button type="button" onClick={handleOpenModal}>
+        <button type="button" onClick={() => setIsOpen(true)}>
           Edit
         </button>
-        <button type="button" onClick={() => handleDeleteClick(_id)}>
+        <button type="button" onClick={handleDeleteClick}>
           Delete
         </button>
       </li>

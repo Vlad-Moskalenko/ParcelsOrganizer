@@ -11,10 +11,12 @@ import {
 } from 'redux-persist';
 
 import { authReducer } from './auth/authSlice';
+import { parcelsReducer } from './parcels/parcelsSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    parcels: parcelsReducer
   },
 
   middleware: getDefaultMiddleware =>

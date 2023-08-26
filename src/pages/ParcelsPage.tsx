@@ -1,10 +1,11 @@
+import { useAppSelector } from 'src/hooks/useAppSelector';
 import { ParcelsList } from 'src/components';
-import { useParcels } from 'src/hooks/useParcels';
+import { selectParcels } from 'src/redux/parcels/parcelsSelectors';
 
 function ParcelsPage() {
-  const { data } = useParcels();
+  const parcelsList = useAppSelector(selectParcels);
 
-  return data && <ParcelsList list={data} />;
+  return parcelsList.length > 0 && <ParcelsList list={parcelsList} />;
 }
 
 export default ParcelsPage;
