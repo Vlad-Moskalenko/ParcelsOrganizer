@@ -2,6 +2,9 @@ body {
   margin: 0;
   padding: 0 15px;
   min-height: 100vh;
+
+  font-family: 'Roboto', sans-serif;
+  height: 18px;
 }
 
 ul {

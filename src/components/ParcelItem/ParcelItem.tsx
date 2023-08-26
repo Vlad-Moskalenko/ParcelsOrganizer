@@ -1,11 +1,12 @@
 import { useState } from 'react';
-
-import { ParcelState } from 'src/entities/ParcelState';
-import { Modal } from '..';
+import { TableRow, TableCell, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { removeParcel } from 'src/redux/parcels/parcelsSlice';
-import s from './ParcelItem.module.css';
+import { ParcelState } from 'src/entities/ParcelState';
+import { Modal } from '..';
 
 type ParcelProps = {
   data: ParcelState;
@@ -23,20 +24,23 @@ export const ParcelItem = ({ data }: ParcelProps) => {
 
   return (
     <>
-      <li className={s.item}>
-        <span>From: {location}</span>
-        <span>To: {destination}</span>
-        <span>Type: {type}</span>
-        <span>Description: {description}</span>
-        <span>Date: {date}</span>
-
-        <button type="button" onClick={() => setIsOpen(true)}>
-          Edit
-        </button>
-        <button type="button" onClick={handleDeleteClick}>
-          Delete
-        </button>
-      </li>
+      <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+        <TableCell align="left">{location}</TableCell>
+        <TableCell align="left">{destination}</TableCell>
+        <TableCell align="left">{date}</TableCell>
+        <TableCell align="left">{type}</TableCell>
+        <TableCell align="left">{description}</TableCell>
+        <TableCell align="left">
+          <IconButton type="button" onClick={() => setIsOpen(true)}>
+            <EditIcon />
+          </IconButton>
+        </TableCell>
+        <TableCell align="left">
+          <IconButton onClick={handleDeleteClick}>
+            <DeleteIcon />
+          </IconButton>
+        </TableCell>
+      </TableRow>
       {isOpen && <Modal setIsOpen={setIsOpen} data={data} />}
     </>
   );

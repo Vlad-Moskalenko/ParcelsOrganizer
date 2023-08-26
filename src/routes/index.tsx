@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: ROUTES.REQUESTS,
-        element: <PrivateRoute redirectTo="/login" component={RequestsPage} />,
+        element: <RequestsPage />,
       },
       {
         path: ROUTES.CREATE_REQUEST,
