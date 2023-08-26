@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { removeParcel } from 'src/redux/parcels/parcelsSlice';
 import { ParcelState } from 'src/entities/ParcelState';
-import { Modal } from '..';
+import { ParcelModal } from '..';
 
 type ParcelProps = {
   data: ParcelState;
@@ -41,7 +41,7 @@ export const ParcelItem = ({ data }: ParcelProps) => {
           </IconButton>
         </TableCell>
       </TableRow>
-      {isOpen && <Modal setIsOpen={setIsOpen} data={data} />}
+      <ParcelModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} />
     </>
   );
 };
