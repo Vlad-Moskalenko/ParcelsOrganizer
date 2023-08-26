@@ -2,7 +2,7 @@ export {Layout} from './Layout/Layout';
 export {App} from './App';
 export {Spinner} from './Spinner/Spinner';
 export {Navigation} from './Navigation/Navigation';
-export {AppBar} from './AppBar/AppBar';
+export {Header} from './Header/Header';
 export {UserMenu} from './UserMenu/UserMenu';
 export {AuthNav} from './AuthNav/AuthNav';
 export {OrderForm} from './OrderForm/OrderForm';

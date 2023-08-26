@@ -2,17 +2,23 @@ import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from 'src/routes/routes.const';
 
-import s from './Navigation.module.css';
+import s from './Navigation.module.scss';
 
 export const Navigation = () => {
   return (
     <nav>
-      <NavLink className={s.link} to={ROUTES.REQUESTS}>
-        Parcels
-      </NavLink>
-      <NavLink className={s.link} to={ROUTES.CREATE_REQUEST}>
-        Create Parcel
-      </NavLink>
+      <ul className={s.list}>
+        <li>
+          <NavLink className={s.link} to={ROUTES.REQUESTS}>
+            Parcels
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={s.link} to={ROUTES.CREATE_REQUEST}>
+            Create Parcel
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 };

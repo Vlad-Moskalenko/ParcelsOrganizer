@@ -1,20 +1,23 @@
+import LogoutIcon from '@mui/icons-material/Logout';
+
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
-import { FiLogOut } from 'react-icons/fi';
-
 import { logout } from 'src/redux/auth/authOperations';
-import { useAuth } from 'src/hooks/useAuth';
 
-import s from './UserMenu.module.css';
+import s from './UserMenu.module.scss';
+import { useAppSelector } from 'src/hooks/useAppSelector';
+import { selectUser } from 'src/redux/auth/authSelectors';
 
 export const UserMenu = () => {
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  const { user } = useAuth();
 
   return (
     <div className={s.wrapper}>
-      <p className={s.username}>Welcome</p>
-      <button className={s.logoutBtn} type="button" onClick={() => dispatch(logout())}>
-        <FiLogOut style={{ width: 25, height: 25 }} />
+      <p>
+        Welcome, <b>{user.email}</b>
+      </p>
+      <button className={s.logoutBtn} onClick={() => dispatch(logout())}>
+        <LogoutIcon />
       </button>
     </div>
   );

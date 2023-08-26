@@ -3,9 +3,9 @@ import { Navigation } from '../Navigation/Navigation';
 import { useAuth } from 'src/hooks/useAuth';
 import { UserMenu, AuthNav } from '..';
 
-import s from './AppBar.module.css';
+import s from './Header.module.scss';
 
-export const AppBar = () => {
+export const Header = () => {
   const { isLoggedIn } = useAuth();
 
   return (

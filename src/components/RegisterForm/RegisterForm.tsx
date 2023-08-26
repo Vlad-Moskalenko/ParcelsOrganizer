@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { register } from 'src/redux/auth/authOperations';
@@ -20,16 +19,16 @@ export const RegisterForm = () => {
 
     validationSchema: RegisterSchema,
 
-    onSubmit: (values, actions) => {
-      dispatch(register(values)).then((resp: any) =>
-        resp?.error ? toast.error(resp.error.message) : actions.resetForm()
-      );
+    onSubmit: values => {
+      dispatch(register(values));
+      // .then((resp: any) =>
+      //   resp?.error ? toast.error(resp.error.message) : actions.resetForm()
+      // );
     },
   });
 
   const {
     values: { email, password, name },
-    isSubmitting,
     errors,
     touched,
     handleBlur,
