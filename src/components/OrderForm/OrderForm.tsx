@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, FormControl, MenuItem, Select, InputLabel, Button } from '@mui/material';
+import Textarea from '@mui/joy/Textarea';
 
 import { ParcelState } from 'src/entities/ParcelState';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
@@ -68,6 +69,15 @@ export const OrderForm = ({ data }: OrderFormProps) => {
         value={destination}
         onChange={handleOrderChange}
       />
+      <TextField
+        label="Date"
+        variant="standard"
+        fullWidth
+        type="date"
+        name="date"
+        value={date}
+        onChange={handleOrderChange}
+      />
       <FormControl variant="standard" fullWidth>
         <InputLabel id="type">Type</InputLabel>
         <Select
@@ -85,22 +95,15 @@ export const OrderForm = ({ data }: OrderFormProps) => {
           <MenuItem value="other">Other</MenuItem>
         </Select>
       </FormControl>
-      <TextField
-        label="Date"
-        variant="standard"
-        fullWidth
-        type="date"
-        name="date"
-        value={date}
-        onChange={handleOrderChange}
-      />
-      <TextField
-        label="Description"
-        variant="standard"
-        fullWidth
-        type="text"
+      <Textarea
+        sx={{ mt: '20px' }}
+        minRows={5}
+        type="textarea"
+        variant="outlined"
         name="description"
+        color="neutral"
         value={description}
+        placeholder="Type some description..."
         onChange={handleOrderChange}
       />
       <Button sx={{ mt: '40px' }} variant="contained" type="submit">

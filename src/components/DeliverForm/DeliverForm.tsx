@@ -6,6 +6,7 @@ import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 
 import s from './DeliverFrom.module.css';
+import { Button, TextField } from '@mui/material';
 
 const INITIAL_STATE = {
   _id: '',
@@ -44,19 +45,36 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
 
   return (
     <form className={s.form} onSubmit={handleDeliverSubmit}>
-      <label className={s.label}>
-        From city
-        <input type="text" name="location" value={location} onChange={handleDeliverChange} />
-      </label>
-      <label className={s.label}>
-        To city
-        <input type="text" name="destination" value={destination} onChange={handleDeliverChange} />
-      </label>
-      <label className={s.label}>
-        Date
-        <input type="date" name="date" value={date} onChange={handleDeliverChange} />
-      </label>
-      <button type="submit">Create Deliver</button>
+      <TextField
+        label="From city"
+        variant="standard"
+        fullWidth
+        name="location"
+        value={location}
+        onChange={handleDeliverChange}
+      />
+
+      <TextField
+        label="City to"
+        variant="standard"
+        fullWidth
+        type="text"
+        name="destination"
+        value={destination}
+        onChange={handleDeliverChange}
+      />
+      <TextField
+        label="Date"
+        variant="standard"
+        fullWidth
+        type="date"
+        name="date"
+        value={date}
+        onChange={handleDeliverChange}
+      />
+      <Button sx={{ mt: '40px' }} variant="contained" type="submit">
+        {data ? 'Submit changes' : 'Create deliver'}
+      </Button>
     </form>
   );
 };
