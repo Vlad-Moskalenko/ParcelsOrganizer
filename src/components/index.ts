@@ -1,4 +1,5 @@
 export {Layout} from './Layout/Layout';
+export {App} from './App';
 export {Spinner} from './Spinner/Spinner';
 export {Navigation} from './Navigation/Navigation';
 export {AppBar} from './AppBar/AppBar';
@@ -11,4 +12,3 @@ export {ParcelsList} from './ParcelsList/ParcelsList';
 export {ParcelItem} from './ParcelItem/ParcelItem';
 export {RegisterForm} from './RegisterForm/RegisterForm';
 export {Modal} from './Modal/Modal';
-export {App} from './App';
