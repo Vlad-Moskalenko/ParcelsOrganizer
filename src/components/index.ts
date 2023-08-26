@@ -12,3 +12,4 @@ export {ParcelsList} from './ParcelsList/ParcelsList';
 export {ParcelItem} from './ParcelItem/ParcelItem';
 export {RegisterForm} from './RegisterForm/RegisterForm';
 export {ParcelModal} from './Modal/ParcelModal';
+export {AsideBar} from './AsideBar/AsideBar';

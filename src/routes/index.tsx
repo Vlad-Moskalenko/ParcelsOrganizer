@@ -6,7 +6,7 @@ import { Layout } from 'src/components';
 import {
   ErrorPage,
   RequestsPage,
-  CreateRequestPage,
+  CreateParcelPage,
   OrderPage,
   DeliverPage,
   RegisterPage,
@@ -27,15 +27,17 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTES.CREATE_REQUEST,
-        element: <CreateRequestPage />,
-      },
-      {
-        path: ROUTES.CREATE_ORDER,
-        element: <OrderPage />,
-      },
-      {
-        path: ROUTES.CREATE_DELIVER,
-        element: <DeliverPage />,
+        element: <CreateParcelPage />,
+        children: [
+          {
+            path: ROUTES.CREATE_ORDER,
+            element: <OrderPage />,
+          },
+          {
+            path: ROUTES.CREATE_DELIVER,
+            element: <DeliverPage />,
+          },
+        ],
       },
       {
         path: ROUTES.REGISTER,

@@ -106,7 +106,7 @@ export const OrderForm = ({ data }: OrderFormProps) => {
         placeholder="Type some description..."
         onChange={handleOrderChange}
       />
-      <Button sx={{ mt: '40px' }} variant="contained" type="submit">
+      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create order'}
       </Button>
     </form>

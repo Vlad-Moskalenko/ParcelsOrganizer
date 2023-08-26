@@ -5,8 +5,8 @@ interface Routes {
 export const ROUTES: Routes = {
   REQUESTS: '/requests',
   CREATE_REQUEST: '/create',
-  CREATE_ORDER: '/create/order',
-  CREATE_DELIVER: '/create/deliver',
+  CREATE_ORDER: 'order',
+  CREATE_DELIVER: 'deliver',
   LOGIN: '/login',
   REGISTER: '/register',
 }

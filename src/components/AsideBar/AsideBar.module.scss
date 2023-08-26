@@ -1,0 +1,11 @@
+.aside {
+  padding-right: 15px;
+  width: 150px;
+  border-right: 1px solid rgb(25, 118, 210);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
