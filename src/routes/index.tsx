@@ -31,11 +31,11 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTES.CREATE_ORDER,
-        element: <PrivateRoute redirectTo="/login" component={OrderPage} />,
+        element: <OrderPage />,
       },
       {
         path: ROUTES.CREATE_DELIVER,
-        element: <PrivateRoute redirectTo="/login" component={DeliverPage} />,
+        element: <DeliverPage />,
       },
       {
         path: ROUTES.REGISTER,

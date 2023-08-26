@@ -4,7 +4,7 @@ body {
   min-height: 100vh;
 
   font-family: 'Roboto', sans-serif;
-  height: 18px;
+  font-size: 14px;
 }
 
 ul {
@@ -24,6 +24,7 @@ p {
 
 a {
   color: inherit;
+  font-size: inherit;
   text-decoration: none;
 }
 
@@ -43,4 +44,18 @@ a {
 
 .inputErr {
   border-color: red;
+}
+
+.link {
+  padding: 6px 16px;
+  display: block;
+
+  font-size: 14px !important;
+  text-transform: uppercase;
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
 }

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TextField, FormControl, MenuItem, Select, InputLabel, Button } from '@mui/material';
 
 import { ParcelState } from 'src/entities/ParcelState';
-import s from './OrderFrom.module.css';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
+
+import s from './OrderFrom.module.scss';
 
 const INITIAL_STATE = {
   _id: '',
   location: '',
   destination: '',
-  type: 'other',
+  type: '',
   date: '',
   description: '',
 };
@@ -48,33 +50,62 @@ export const OrderForm = ({ data }: OrderFormProps) => {
 
   return (
     <form className={s.form} onSubmit={handleOrderSubmit}>
-      <label className={s.label}>
-        From city
-        <input type="text" name="location" value={location} onChange={handleOrderChange} />
-      </label>
-      <label className={s.label}>
-        To city
-        <input type="text" name="destination" value={destination} onChange={handleOrderChange} />
-      </label>
-      <label className={s.label}>
-        Type of parcel
-        <select name="type" value={type} onChange={handleOrderChange}>
-          <option value="gadgets">Gadgets</option>
-          <option value="drinks">Drinks</option>
-          <option value="clothes">Clothes</option>
-          <option value="medicines">Medicines</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
-      <label className={s.label}>
-        Date
-        <input type="date" name="date" value={date} onChange={handleOrderChange} />
-      </label>
-      <label className={s.label}>
-        Parcel description
-        <input type="text" name="description" value={description} onChange={handleOrderChange} />
-      </label>
-      <button type="submit">Create order</button>
+      <TextField
+        label="From city"
+        variant="standard"
+        fullWidth
+        name="location"
+        value={location}
+        onChange={handleOrderChange}
+      />
+
+      <TextField
+        label="City to"
+        variant="standard"
+        fullWidth
+        type="text"
+        name="destination"
+        value={destination}
+        onChange={handleOrderChange}
+      />
+      <FormControl variant="standard" fullWidth>
+        <InputLabel id="type">Type</InputLabel>
+        <Select
+          labelId="type"
+          id="type"
+          label="type"
+          name="type"
+          value={type}
+          onChange={handleOrderChange}
+        >
+          <MenuItem value="gadgets">Gadgets</MenuItem>
+          <MenuItem value="drinks">Drinks</MenuItem>
+          <MenuItem value="clothes">Clothes</MenuItem>
+          <MenuItem value="medicines">Medicines</MenuItem>
+          <MenuItem value="other">Other</MenuItem>
+        </Select>
+      </FormControl>
+      <TextField
+        label="Date"
+        variant="standard"
+        fullWidth
+        type="date"
+        name="date"
+        value={date}
+        onChange={handleOrderChange}
+      />
+      <TextField
+        label="Description"
+        variant="standard"
+        fullWidth
+        type="text"
+        name="description"
+        value={description}
+        onChange={handleOrderChange}
+      />
+      <Button sx={{ mt: '40px' }} variant="contained" type="submit">
+        {data ? 'Submit changes' : 'Create order'}
+      </Button>
     </form>
   );
 };

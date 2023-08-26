@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { Button, Link } from '@mui/material';
 
 import { OrderForm } from 'src/components';
 import { ROUTES } from 'src/routes/routes.const';
@@ -7,7 +8,9 @@ function OrderPage() {
   return (
     <>
       <OrderForm />
-      <Link to={ROUTES.CREATE_DELIVER}>Create Deliver</Link>
+      <Link className="link" component={NavLink} to={ROUTES.CREATE_DELIVER}>
+        Create Deliver
+      </Link>
     </>
   );
 }
