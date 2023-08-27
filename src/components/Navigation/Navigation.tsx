@@ -10,7 +10,7 @@ export const Navigation = () => {
       <ul className={s.list}>
         <li>
           <NavLink
-            className={({ isActive }) => (isActive ? s.active : 'link')}
+            className={({ isActive }) => (isActive ? s.active : s.link)}
             to={ROUTES.REQUESTS}
           >
             Parcels
@@ -18,7 +18,7 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink
-            className={({ isActive }) => (isActive ? s.active : 'link')}
+            className={({ isActive }) => (isActive ? s.active : s.link)}
             to={ROUTES.CREATE_REQUEST}
           >
             Create Parcel

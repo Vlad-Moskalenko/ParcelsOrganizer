@@ -28,7 +28,6 @@ export const LoginForm = () => {
 
   const {
     values: { email, password },
-    isSubmitting,
     errors,
     touched,
     handleBlur,
