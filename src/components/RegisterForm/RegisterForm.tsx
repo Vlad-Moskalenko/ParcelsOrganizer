@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
+import { Button, TextField } from '@mui/material';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { register } from 'src/redux/auth/authOperations';
 import { RegisterSchema } from './registerSchema';
 
-import s from './RegisterForm.module.css';
+import s from './RegisterForm.module.scss';
 
 const INITIAL_STATE = {
   name: '',
@@ -29,8 +30,8 @@ export const RegisterForm = () => {
 
   const {
     values: { email, password, name },
-    errors,
-    touched,
+    // errors,
+    // touched,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -38,45 +39,45 @@ export const RegisterForm = () => {
 
   return (
     <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={s.label}>
-        Name
-        <input
-          type="text"
-          name="name"
-          autoComplete="name"
-          value={name}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {errors.name && touched.name && <p className="errorMsg">{errors.name}</p>}
-      </label>
-      <label className={s.label}>
-        Email
-        <input
-          type="email"
-          name="email"
-          autoComplete="email"
-          value={email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {errors.email && touched.email && <p className="errorMsg">{errors.email}</p>}
-      </label>
-      <label className={s.label}>
-        Password
-        <input
-          type="password"
-          name="password"
-          autoComplete="password"
-          value={password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {errors.password && touched.password && <p className="errorMsg">{errors.password}</p>}
-      </label>
-      <button className={s.authBtn} type="submit">
+      <TextField
+        label="Name"
+        variant="standard"
+        fullWidth
+        type="text"
+        name="name"
+        autoComplete="name"
+        value={name}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      {/* {errors.name && touched.name && <p className="errorMsg">{errors.name}</p>} */}
+      <TextField
+        label="Email"
+        variant="standard"
+        fullWidth
+        type="email"
+        name="email"
+        autoComplete="email"
+        value={email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      {/* {errors.email && touched.email && <p className="errorMsg">{errors.email}</p>} */}
+      <TextField
+        label="Password"
+        variant="standard"
+        fullWidth
+        type="password"
+        name="password"
+        autoComplete="password"
+        value={password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      {/* {errors.password && touched.password && <p className="errorMsg">{errors.password}</p>} */}
+      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
         Register
-      </button>
+      </Button>
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LoginForm } from 'src/components';
 
 function LoginPage() {
@@ -7,9 +7,9 @@ function LoginPage() {
       <LoginForm />
       <p className="authMsg">
         Don’t have an account?
-        <NavLink to="/register">
+        <Link className="link" to="/register">
           <b>Join to us</b>
-        </NavLink>
+        </Link>
       </p>
     </>
   );
