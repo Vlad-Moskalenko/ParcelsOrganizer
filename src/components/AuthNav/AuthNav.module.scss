@@ -1,17 +1,8 @@
 .authLink {
-  opacity: 0.5;
-
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
 
   &:hover,
   &:focus {
-    opacity: 1;
     transform: scale(1.2);
   }
-}
-
-.active {
-  color: #000;
-  transform: scale(1.2);
-  transition: transform 0.25s ease-in-out, color 0.25s ease-in-out;
 }

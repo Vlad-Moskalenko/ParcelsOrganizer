@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Header, Spinner } from '..';
-import s from './Layout.module.css';
+import s from './Layout.module.scss';
 
 export const Layout = () => {
   return (

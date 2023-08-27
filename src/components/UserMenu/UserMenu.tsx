@@ -17,7 +17,12 @@ export const UserMenu = () => {
       <p>
         Welcome, <b>{user.email}</b>
       </p>
-      <IconButton color="inherit" className={s.logoutBtn} onClick={() => dispatch(logout())}>
+      <IconButton
+        aria-label="logout"
+        color="inherit"
+        className={s.logoutBtn}
+        onClick={() => dispatch(logout())}
+      >
         <LogoutIcon />
       </IconButton>
     </div>
