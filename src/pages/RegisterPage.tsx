@@ -6,7 +6,7 @@ function RegisterPage() {
   return (
     <>
       <RegisterForm />
-      <p className="authMsg">
+      <p className="text">
         Already have an account?
         <Link className="link" to="/login">
           <b>Login</b>

@@ -20,22 +20,25 @@ export const ParcelItem = ({ data }: ParcelProps) => {
     dispatch(removeParcel(data._id));
   };
 
-  const { location, destination, type, description, date } = data;
+  const { location, destination, type, description, date, parcelType } = data;
 
   return (
     <>
-      <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+      <TableRow
+        sx={{
+          '&:last-child td, &:last-child th': { border: 0 },
+          backgroundColor: parcelType === 'deliver' ? '#00000020' : 'initial',
+        }}
+      >
         <TableCell align="left">{location}</TableCell>
         <TableCell align="left">{destination}</TableCell>
         <TableCell align="left">{date}</TableCell>
-        <TableCell align="left">{type}</TableCell>
-        <TableCell align="left">{description}</TableCell>
-        <TableCell align="left">
+        <TableCell align="left">{type || '-'}</TableCell>
+        <TableCell align="left">{description || '-'}</TableCell>
+        <TableCell align="right">
           <IconButton type="button" onClick={() => setIsOpen(true)}>
             <EditIcon />
           </IconButton>
-        </TableCell>
-        <TableCell align="left">
           <IconButton onClick={handleDeleteClick}>
             <DeleteIcon />
           </IconButton>

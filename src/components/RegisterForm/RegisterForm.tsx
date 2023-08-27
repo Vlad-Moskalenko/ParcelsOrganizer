@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { register } from 'src/redux/auth/authOperations';
@@ -21,17 +22,16 @@ export const RegisterForm = () => {
     validationSchema: RegisterSchema,
 
     onSubmit: values => {
-      dispatch(register(values));
-      // .then((resp: any) =>
-      //   resp?.error ? toast.error(resp.error.message) : actions.resetForm()
-      // );
+      dispatch(register(values)).then(
+        (resp: any) => resp?.error && toast.error(resp.payload.response.data.message)
+      );
     },
   });
 
   const {
     values: { email, password, name },
-    // errors,
-    // touched,
+    errors,
+    touched,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -49,8 +49,9 @@ export const RegisterForm = () => {
         value={name}
         onChange={handleChange}
         onBlur={handleBlur}
+        error={!!errors.name && !!touched.name}
+        helperText={!!errors.name && !!touched.name ? errors.name : ''}
       />
-      {/* {errors.name && touched.name && <p className="errorMsg">{errors.name}</p>} */}
       <TextField
         label="Email"
         variant="standard"
@@ -61,8 +62,9 @@ export const RegisterForm = () => {
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
+        error={!!errors.email && !!touched.email}
+        helperText={!!errors.email && !!touched.email ? errors.email : ''}
       />
-      {/* {errors.email && touched.email && <p className="errorMsg">{errors.email}</p>} */}
       <TextField
         label="Password"
         variant="standard"
@@ -73,8 +75,9 @@ export const RegisterForm = () => {
         value={password}
         onChange={handleChange}
         onBlur={handleBlur}
+        error={!!errors.password && !!touched.password}
+        helperText={!!errors.password && !!touched.password ? errors.password : ''}
       />
-      {/* {errors.password && touched.password && <p className="errorMsg">{errors.password}</p>} */}
       <Button sx={{ mt: '20px' }} variant="contained" type="submit">
         Register
       </Button>

@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { login } from 'src/redux/auth/authOperations';
@@ -20,17 +21,17 @@ export const LoginForm = () => {
     validationSchema: LoginSchema,
 
     onSubmit: values => {
-      dispatch(login(values));
-      // .then((resp: any) =>
-      //   resp?.error ? toast.error(resp.error.message) : actions.resetForm()
-      // );
+      dispatch(login(values)).then(
+        (resp: any) => resp?.error && toast.error(resp.payload.response.data.message)
+      );
     },
   });
 
   const {
     values: { email, password },
-    // errors,
-    // touched,
+    isSubmitting,
+    errors,
+    touched,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -48,8 +49,9 @@ export const LoginForm = () => {
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
+        error={!!errors.email && !!touched.email}
+        helperText={!!errors.email && !!touched.email ? errors.email : ''}
       />
-      {/* {errors.email && touched.email && <p className="errorMsg">{errors.email}</p>} */}
       <TextField
         label="Password"
         variant="standard"
@@ -60,9 +62,10 @@ export const LoginForm = () => {
         value={password}
         onChange={handleChange}
         onBlur={handleBlur}
+        error={!!errors.password && !!touched.password}
+        helperText={!!errors.password && !!touched.password ? errors.password : ''}
       />
-      {/* {errors.password && touched.password && <p className="errorMsg">{errors.password}</p>} */}
-      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
+      <Button sx={{ mt: '20px' }} variant="contained" type="submit" disabled={isSubmitting}>
         Login
       </Button>
     </form>

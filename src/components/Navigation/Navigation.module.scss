@@ -6,17 +6,17 @@
 .active {
   display: inline-block;
 
-  transform: scale(1.2);
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  opacity: 1;
 
-  transition: transform 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
 }
 
 .link {
-  transition: text-shadow 0.25s ease-in-out;
+  opacity: 0.7;
+  transition: opacity 0.25s ease-in-out;
 
   &:hover,
   &:focus {
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    opacity: 1;
   }
 }
