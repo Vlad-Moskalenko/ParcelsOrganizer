@@ -1,5 +1,6 @@
-import { Navigation } from '../Navigation/Navigation';
+import { AppBar } from '@mui/material';
 
+import { Navigation } from '../Navigation/Navigation';
 import { useAuth } from 'src/hooks/useAuth';
 import { UserMenu, AuthNav } from '..';
 
@@ -9,9 +10,9 @@ export const Header = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <header className={s.header}>
+    <AppBar className={s.header}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </header>
+    </AppBar>
   );
 };

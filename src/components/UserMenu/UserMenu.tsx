@@ -1,11 +1,12 @@
+import { IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import { useAppSelector } from 'src/hooks/useAppSelector';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { selectUser } from 'src/redux/auth/authSelectors';
 import { logout } from 'src/redux/auth/authOperations';
 
 import s from './UserMenu.module.scss';
-import { useAppSelector } from 'src/hooks/useAppSelector';
-import { selectUser } from 'src/redux/auth/authSelectors';
 
 export const UserMenu = () => {
   const user = useAppSelector(selectUser);
@@ -16,9 +17,9 @@ export const UserMenu = () => {
       <p>
         Welcome, <b>{user.email}</b>
       </p>
-      <button className={s.logoutBtn} onClick={() => dispatch(logout())}>
+      <IconButton color="inherit" className={s.logoutBtn} onClick={() => dispatch(logout())}>
         <LogoutIcon />
-      </button>
+      </IconButton>
     </div>
   );
 };

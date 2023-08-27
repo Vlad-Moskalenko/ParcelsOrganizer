@@ -1,18 +1,13 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import { ROUTES } from 'src/routes/routes.const';
 import s from './AuthNav.module.scss';
 
 export const AuthNav = () => {
-  const { pathname } = useLocation();
-
-  return pathname === '/login' ? (
-    <NavLink className={s.link} to={ROUTES.REGISTER}>
-      Register
-    </NavLink>
-  ) : (
-    <NavLink className={s.link} to={ROUTES.LOGIN}>
-      Login
+  return (
+    <NavLink className={({ isActive }) => (isActive ? s.active : s.authLink)} to={ROUTES.LOGIN}>
+      <AppRegistrationIcon />
     </NavLink>
   );
 };

@@ -47,15 +47,10 @@ a {
 }
 
 .link {
-  padding: 6px 16px;
-  display: block;
-
-  font-size: 14px !important;
-  text-transform: uppercase;
-  text-align: center;
+  transition: text-shadow 0.25s ease-in-out;
 
   &:hover,
   &:focus {
-    text-decoration: none;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   }
 }

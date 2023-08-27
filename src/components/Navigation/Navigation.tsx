@@ -9,12 +9,18 @@ export const Navigation = () => {
     <nav>
       <ul className={s.list}>
         <li>
-          <NavLink className={s.link} to={ROUTES.REQUESTS}>
+          <NavLink
+            className={({ isActive }) => (isActive ? s.active : 'link')}
+            to={ROUTES.REQUESTS}
+          >
             Parcels
           </NavLink>
         </li>
         <li>
-          <NavLink className={s.link} to={ROUTES.CREATE_REQUEST}>
+          <NavLink
+            className={({ isActive }) => (isActive ? s.active : 'link')}
+            to={ROUTES.CREATE_REQUEST}
+          >
             Create Parcel
           </NavLink>
         </li>

@@ -1,18 +1,10 @@
 .wrapper {
-  padding-right: 12px;
   display: flex;
   align-items: center;
-  gap: 24px;
-}
-
-.username {
-  font-weight: 700;
+  gap: 20px;
 }
 
 .logoutBtn {
-  background-color: transparent;
-  border: none;
-
   cursor: pointer;
   opacity: 0.5;
 
