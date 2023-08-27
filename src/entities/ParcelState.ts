@@ -4,6 +4,7 @@ export type ParcelState = {
   location: string;
   destination: string;
   type?: 'gadgets' | 'drinks' | 'clothes' | 'medicines' | 'other';
-  date: string;
   description?: string;
+  date: string;
+  createdAt: number;
 }

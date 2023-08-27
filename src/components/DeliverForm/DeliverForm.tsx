@@ -36,7 +36,7 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
       return;
     }
 
-    dispatch(addParcel({ ...deliverData, parcelType: 'deliver' }));
+    dispatch(addParcel({ ...deliverData, parcelType: 'deliver', createdAt: Date.now() }));
     setDeliverData(INITIAL_STATE);
     navigate('/requests');
   };

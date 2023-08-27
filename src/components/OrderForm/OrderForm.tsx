@@ -41,7 +41,7 @@ export const OrderForm = ({ data }: OrderFormProps) => {
       dispatch(updateParcel(orderData));
       return;
     } else {
-      dispatch(addParcel({ ...orderData, parcelType: 'order' }));
+      dispatch(addParcel({ ...orderData, parcelType: 'order', createdAt: Date.now() }));
       setOrderData(INITIAL_STATE);
       navigate('/requests');
     }
