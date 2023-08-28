@@ -89,6 +89,9 @@ export const OrderForm = ({ data }: OrderFormProps) => {
         onBlur={handleBlur}
         error={!!errors.date && !!touched.date}
         helperText={!!errors.date && !!touched.date ? errors.date : ''}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
       <FormControl variant="standard" fullWidth>
         <InputLabel id="type">Type</InputLabel>

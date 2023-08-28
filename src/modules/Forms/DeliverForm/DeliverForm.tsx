@@ -9,6 +9,15 @@ import { deliverSchema } from './deliverSchema';
 
 import s from './DeliverFrom.module.scss';
 
+const styles = (theme: any) =>
+  createStyles({
+    input: {
+      '&::placeholder': {
+        fontStyle: 'italic',
+      },
+    },
+  });
+
 const INITIAL_STATE = {
   location: '',
   destination: '',
@@ -85,6 +94,9 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
         onBlur={handleBlur}
         error={!!errors.date && !!touched.date}
         helperText={!!errors.date && !!touched.date ? errors.date : ''}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
       <Button sx={{ mt: '40px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create deliver'}
