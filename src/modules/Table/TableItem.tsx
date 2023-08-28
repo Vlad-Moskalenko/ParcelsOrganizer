@@ -32,7 +32,7 @@ export const TableItem = ({ data }: TableItemProps) => {
       >
         <TableCell align="left">{location}</TableCell>
         <TableCell align="left">{destination}</TableCell>
-        <TableCell align="left">{date}</TableCell>
+        <TableCell align="left">{date || '-'}</TableCell>
         <TableCell align="left">{type || '-'}</TableCell>
         <TableCell align="left">{description || '-'}</TableCell>
         <TableCell align="right">
