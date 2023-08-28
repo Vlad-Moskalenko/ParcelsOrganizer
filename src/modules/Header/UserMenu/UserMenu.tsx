@@ -15,7 +15,7 @@ export const UserMenu = () => {
   return (
     <div className={s.wrapper}>
       <p>
-        Welcome, <b>{user.email}</b>
+        Welcome, <b>{user?.email}</b>
       </p>
       <IconButton
         aria-label="logout"
