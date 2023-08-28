@@ -7,7 +7,7 @@ import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 import { deliverSchema } from './deliverSchema';
 
-import s from './DeliverFrom.module.css';
+import s from './DeliverFrom.module.scss';
 
 const INITIAL_STATE = {
   location: '',
@@ -24,7 +24,7 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
-    initialValues: INITIAL_STATE,
+    initialValues: data || INITIAL_STATE,
 
     validationSchema: deliverSchema,
 

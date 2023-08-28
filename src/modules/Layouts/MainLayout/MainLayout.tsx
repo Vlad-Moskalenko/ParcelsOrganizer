@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { AppBar } from '..';
-import s from './Layout.module.scss';
+import { AppBar } from '../..';
+import s from './MainLayout.module.scss';
 
-export const Layout = () => {
+export const MainLayout = () => {
   return (
     <>
       <AppBar />

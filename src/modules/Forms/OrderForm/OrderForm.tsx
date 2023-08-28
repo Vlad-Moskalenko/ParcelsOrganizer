@@ -28,7 +28,7 @@ export const OrderForm = ({ data }: OrderFormProps) => {
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
-    initialValues: INITIAL_STATE,
+    initialValues: data || INITIAL_STATE,
 
     validationSchema: orderSchema,
 

@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from './routes.const';
 
-import { Layout } from 'src/modules';
+import { MainLayout } from 'src/modules';
 import {
   ErrorPage,
   RequestsPage,
@@ -17,7 +17,7 @@ import { RestrictedRoute } from './RestrictedRoutes';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {

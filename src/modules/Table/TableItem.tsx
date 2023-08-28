@@ -27,7 +27,7 @@ export const TableItem = ({ data }: TableItemProps) => {
       <TableRow
         sx={{
           '&:last-child td, &:last-child th': { border: 0 },
-          backgroundColor: parcelType === 'deliver' ? '#00000020' : 'initial',
+          backgroundColor: parcelType === 'deliver' ? '#00000004' : 'initial',
         }}
       >
         <TableCell align="left">{location}</TableCell>
@@ -37,10 +37,10 @@ export const TableItem = ({ data }: TableItemProps) => {
         <TableCell align="left">{description || '-'}</TableCell>
         <TableCell align="right">
           <IconButton type="button" onClick={() => setIsOpen(true)}>
-            <EditIcon />
+            <EditIcon color="primary" />
           </IconButton>
           <IconButton onClick={handleDeleteClick}>
-            <DeleteIcon />
+            <DeleteIcon color="primary" />
           </IconButton>
         </TableCell>
       </TableRow>

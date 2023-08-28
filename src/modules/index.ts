@@ -6,7 +6,6 @@ export {DeliverForm} from './Forms/DeliverForm/DeliverForm';
 export {LoginForm} from './Forms/LoginForm/LoginForm';
 export {RegisterForm} from './Forms/RegisterForm/RegisterForm';
 
-export {AsideBar} from './AsideBar/AsideBar';
-export {Layout} from './Layout/Layout';
+export {MainLayout} from './Layouts/MainLayout/MainLayout';
 export {ParcelModal} from './Modals';
 export {App} from './App';
