@@ -3,6 +3,11 @@ import { axiosInstance } from "src/services/axiosConfig"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ParcelState } from "src/entities/ParcelState"
 
+interface UpdatedData extends Partial<ParcelState> {
+  updatedAt?: string;
+  owner?: string;
+}
+
 export const getParcels = createAsyncThunk('parcels/getParcels', async(_, thunkApi) => {
   try{
     const {data} = await axiosInstance.get('/parcels')
@@ -37,9 +42,11 @@ export const createParcel = createAsyncThunk(
 
 export const editParcel = createAsyncThunk(
   '/parcels/editParcel',
-  async(parcelData: ParcelState, thunkApi) => {
+  async(parcelData: UpdatedData, thunkApi) => {
     try {
-      const {data} = await axiosInstance.put('/parcels', {...parcelData})
+      // eslint-disable-next-line
+      const {_id, owner, createdAt, updatedAt, ...updatedParcel} = parcelData;
+      const {data} = await axiosInstance.put(`/parcels/${_id}`, updatedParcel)
       return data
     }
     catch(e){

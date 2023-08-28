@@ -7,7 +7,7 @@ import { useAuth } from 'src/hooks/useAuth';
 import { ParcelState } from 'src/entities/ParcelState';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
-import { createParcel } from 'src/redux/parcels/parcelsOperations';
+import { createParcel, editParcel } from 'src/redux/parcels/parcelsOperations';
 import { orderSchema } from './orderSchema';
 import { ROUTES } from 'src/routes/routes.const';
 
@@ -36,15 +36,16 @@ export const OrderForm = ({ data }: OrderFormProps) => {
     validationSchema: orderSchema,
 
     onSubmit: values => {
-      if (isLoggedIn && !isRefreshing) {
-        dispatch(createParcel({ ...values, parcelType: 'order' })).then(resp => {
+      if (isLoggedIn && !isRefreshing && !data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch(createParcel({ ...values, parcelType: 'order' })).then((resp: any) => {
           !resp?.error && navigate(ROUTES.REQUESTS);
         });
         return;
       }
 
       if (data) {
-        dispatch(updateParcel({ values }));
+        isLoggedIn ? dispatch(editParcel({ ...values })) : dispatch(updateParcel({ ...values }));
       } else {
         dispatch(addParcel({ ...values, parcelType: 'order', createdAt: Date.now() }));
         navigate(ROUTES.REQUESTS);

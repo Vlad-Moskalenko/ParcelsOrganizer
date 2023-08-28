@@ -23,7 +23,7 @@ const parcelsSlice = createSlice({
   reducers: {
     addParcel: {
       reducer(state, action: PayloadAction<ParcelState>) {
-        state.parcels.unshift(action.payload);
+        state.parcels.push(action.payload);
       },
       prepare(data: Omit<ParcelState, '_id'>) {
         return {

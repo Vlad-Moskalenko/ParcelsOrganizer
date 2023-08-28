@@ -5,7 +5,7 @@ import { Button, TextField } from '@mui/material';
 import { ParcelState } from 'src/entities/ParcelState';
 import { useAuth } from 'src/hooks/useAuth';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
-import { createParcel } from 'src/redux/parcels/parcelsOperations';
+import { createParcel, editParcel } from 'src/redux/parcels/parcelsOperations';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 import { deliverSchema } from './deliverSchema';
 import { ROUTES } from 'src/routes/routes.const';
@@ -33,15 +33,16 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
     validationSchema: deliverSchema,
 
     onSubmit: values => {
-      if (isLoggedIn && !isRefreshing) {
-        dispatch(createParcel({ ...values, parcelType: 'deliver' })).then(() => {
+      if (isLoggedIn && !isRefreshing && !data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch(createParcel({ ...values, parcelType: 'deliver' })).then((resp: any) => {
           !resp?.error && navigate(ROUTES.REQUESTS);
         });
         return;
       }
 
       if (data) {
-        dispatch(updateParcel({ values }));
+        isLoggedIn ? dispatch(editParcel({ ...values })) : dispatch(updateParcel({ ...values }));
       } else {
         dispatch(addParcel({ ...values, parcelType: 'deliver', createdAt: Date.now() }));
         navigate(ROUTES.REQUESTS);
