@@ -3,8 +3,10 @@ import { TableRow, TableCell, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
+import { useAuth } from 'src/hooks/useAuth';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { removeParcel } from 'src/redux/parcels/parcelsSlice';
+import { deleteParcel } from 'src/redux/parcels/parcelsOperations';
 import { ParcelState } from 'src/entities/ParcelState';
 import { ParcelModal } from '..';
 
@@ -13,11 +15,16 @@ type TableItemProps = {
 };
 
 export const TableItem = ({ data }: TableItemProps) => {
+  const { isLoggedIn, isRefreshing } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
 
   const handleDeleteClick = () => {
-    dispatch(removeParcel(data._id));
+    if (isLoggedIn && !isRefreshing) {
+      dispatch(deleteParcel(data._id));
+    } else {
+      dispatch(removeParcel(data._id));
+    }
   };
 
   const { location, destination, type, description, date, parcelType } = data;
