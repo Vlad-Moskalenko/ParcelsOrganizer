@@ -9,15 +9,6 @@ import { deliverSchema } from './deliverSchema';
 
 import s from './DeliverFrom.module.scss';
 
-const styles = (theme: any) =>
-  createStyles({
-    input: {
-      '&::placeholder': {
-        fontStyle: 'italic',
-      },
-    },
-  });
-
 const INITIAL_STATE = {
   location: '',
   destination: '',

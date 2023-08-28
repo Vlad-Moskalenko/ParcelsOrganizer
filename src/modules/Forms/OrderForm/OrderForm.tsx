@@ -10,11 +10,10 @@ import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 import s from './OrderFrom.module.scss';
 import { orderSchema } from './orderSchema';
 
-const INITIAL_STATE = {
-  _id: '',
+const INITIAL_STATE: Omit<ParcelState, '_id' | 'createdAt' | 'parcelType'> = {
   location: '',
   destination: '',
-  type: '',
+  type: 'other',
   date: '',
   description: '',
 };

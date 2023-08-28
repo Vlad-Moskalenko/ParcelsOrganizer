@@ -22,7 +22,7 @@ const parcelsSlice = createSlice({
       reducer(state, action: PayloadAction<ParcelState>) {
         state.parcels.push(action.payload);
       },
-      prepare(data: ParcelState) {
+      prepare(data: Omit<ParcelState, '_id'>) {
         return {
           payload: {
             ...data,
