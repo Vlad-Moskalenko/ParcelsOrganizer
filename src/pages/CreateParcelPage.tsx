@@ -1,7 +1,7 @@
 import { Outlet, useLocation, Link } from 'react-router-dom';
 
 import { ROUTES } from 'src/routes/routes.const';
-import { AsideBar } from 'src/components';
+import { AsideBar } from 'src/modules';
 
 function CreateParcelPage() {
   const { pathname } = useLocation();

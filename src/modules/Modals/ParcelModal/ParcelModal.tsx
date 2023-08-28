@@ -3,7 +3,7 @@ import { IconButton, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { ParcelState } from 'src/entities/ParcelState';
-import { DeliverForm, OrderForm } from '..';
+import { DeliverForm, OrderForm } from '../..';
 
 import s from './ParcelModal.module.scss';
 

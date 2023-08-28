@@ -8,11 +8,11 @@ import { removeParcel } from 'src/redux/parcels/parcelsSlice';
 import { ParcelState } from 'src/entities/ParcelState';
 import { ParcelModal } from '..';
 
-type ParcelProps = {
+type TableItemProps = {
   data: ParcelState;
 };
 
-export const ParcelItem = ({ data }: ParcelProps) => {
+export const TableItem = ({ data }: TableItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
 

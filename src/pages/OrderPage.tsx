@@ -1,4 +1,4 @@
-import { OrderForm } from 'src/components';
+import { OrderForm } from 'src/modules';
 
 function OrderPage() {
   return <OrderForm />;

@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from './routes.const';
 
-import { Layout } from 'src/components';
+import { Layout } from 'src/modules';
 import {
   ErrorPage,
   RequestsPage,
@@ -13,7 +13,6 @@ import {
   LoginPage,
 } from 'src/pages';
 import { RestrictedRoute } from './RestrictedRoutes';
-import { PrivateRoute } from './PrivateRoute';
 
 export const router = createBrowserRouter([
   {

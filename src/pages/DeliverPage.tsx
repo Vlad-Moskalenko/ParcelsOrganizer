@@ -1,4 +1,4 @@
-import { DeliverForm } from 'src/components';
+import { DeliverForm } from 'src/modules';
 
 function DeliverPage() {
   return <DeliverForm />;

@@ -6,12 +6,10 @@ import { ParcelState} from "src/entities/ParcelState";
 
 type State = {
   parcels: ParcelState[],
-  sortOrder: string;
 }
 
 const INITIAL_STATE: State = {
   parcels: [],
-  sortOrder: '',
 }
 
 const parcelsSlice = createSlice({
@@ -40,9 +38,6 @@ const parcelsSlice = createSlice({
     updateParcel(state, action) {
       const index = state.parcels.findIndex(parcel => parcel._id === action.payload._id);
       state.parcels.splice(index, 1, action.payload);
-    },
-    setSortOrder(state, action) {
-      state.sortOrder = action.payload
     }
   }
 })
@@ -53,5 +48,5 @@ const parcelsPersistConfig = {
   whitelist: ['parcels'],
 };
 
-export const {addParcel, removeParcel, updateParcel, setSortOrder} = parcelsSlice.actions;
+export const {addParcel, removeParcel, updateParcel } = parcelsSlice.actions;
 export const parcelsReducer = persistReducer(parcelsPersistConfig, parcelsSlice.reducer);

@@ -1,20 +1,20 @@
 import { Button, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
 
-import { useAppDispatch } from 'src/hooks/useAppDispatch';
-import { setSortOrder } from 'src/redux/parcels/parcelsSlice';
+type SortByDateBtnProps = {
+  setSortBy: (sort: string) => void;
+};
 
-export const SortDateBtn = () => {
+export const SortByDateBtn = ({ setSortBy }: SortByDateBtnProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const dispatch = useAppDispatch();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const setOrderSort = (order: string) => {
-    dispatch(setSortOrder(order));
+    setSortBy(order);
     handleClose();
   };
 

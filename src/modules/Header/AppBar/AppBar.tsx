@@ -1,18 +1,18 @@
-import { AppBar } from '@mui/material';
+import { AppBar as MuiAppBar } from '@mui/material';
 
 import { Navigation } from '../Navigation/Navigation';
 import { useAuth } from 'src/hooks/useAuth';
 import { UserMenu, AuthNav } from '..';
 
-import s from './Header.module.scss';
+import s from './AppBar.module.scss';
 
-export const Header = () => {
+export const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <AppBar className={s.header}>
+    <MuiAppBar className={s.header}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </AppBar>
+    </MuiAppBar>
   );
 };
