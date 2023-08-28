@@ -13,8 +13,8 @@ export const getParcels = createAsyncThunk('parcels/getParcels', async(_, thunkA
   }
 })
 
-export const deleteParcel = createAsyncThunk('parcels/deleteParcel', async(parcelId, thunkApi) => {
-  try{
+export const deleteParcel = createAsyncThunk('parcels/deleteParcel', async(parcelId: string, thunkApi) => {
+  try {
     const {data} = await axiosInstance.delete(`/parcels/${parcelId}`)
     return data
   }
@@ -25,7 +25,7 @@ export const deleteParcel = createAsyncThunk('parcels/deleteParcel', async(parce
 
 export const createParcel = createAsyncThunk(
   '/parcels/createParcel',
-  async(parcelData: ParcelState, thunkApi) => {
+  async(parcelData: Omit<ParcelState, '_id' | 'createdAt' >, thunkApi) => {
     try {
       const {data} = await axiosInstance.post('/parcels', {...parcelData})
       return data

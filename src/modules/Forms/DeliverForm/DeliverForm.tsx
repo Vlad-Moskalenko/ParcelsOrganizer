@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 
 import { ParcelState } from 'src/entities/ParcelState';
+import { useAuth } from 'src/hooks/useAuth';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { createParcel } from 'src/redux/parcels/parcelsOperations';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 import { deliverSchema } from './deliverSchema';
+import { ROUTES } from 'src/routes/routes.const';
 
 import s from './DeliverFrom.module.scss';
 
@@ -22,6 +25,7 @@ type DeliverFormProps = {
 export const DeliverForm = ({ data }: DeliverFormProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { isLoggedIn, isRefreshing } = useAuth();
 
   const formik = useFormik({
     initialValues: data || INITIAL_STATE,
@@ -29,13 +33,19 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
     validationSchema: deliverSchema,
 
     onSubmit: values => {
-      if (data) {
-        dispatch(updateParcel(values));
+      if (isLoggedIn && !isRefreshing) {
+        dispatch(createParcel({ ...values, parcelType: 'deliver' })).then(() => {
+          !resp?.error && navigate(ROUTES.REQUESTS);
+        });
         return;
       }
 
-      dispatch(addParcel({ ...values, parcelType: 'deliver', createdAt: Date.now() }));
-      navigate('/requests');
+      if (data) {
+        dispatch(updateParcel({ values }));
+      } else {
+        dispatch(addParcel({ ...values, parcelType: 'deliver', createdAt: Date.now() }));
+        navigate(ROUTES.REQUESTS);
+      }
     },
   });
 

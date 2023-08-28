@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, FormControl, MenuItem, Select, InputLabel, Button } from '@mui/material';
 import Textarea from '@mui/joy/Textarea';
 
+import { useAuth } from 'src/hooks/useAuth';
 import { ParcelState } from 'src/entities/ParcelState';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
+import { createParcel } from 'src/redux/parcels/parcelsOperations';
+import { orderSchema } from './orderSchema';
+import { ROUTES } from 'src/routes/routes.const';
 
 import s from './OrderFrom.module.scss';
-import { orderSchema } from './orderSchema';
 
 const INITIAL_STATE: Omit<ParcelState, '_id' | 'createdAt' | 'parcelType'> = {
   location: '',
@@ -25,6 +28,7 @@ type OrderFormProps = {
 export const OrderForm = ({ data }: OrderFormProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { isLoggedIn, isRefreshing } = useAuth();
 
   const formik = useFormik({
     initialValues: data || INITIAL_STATE,
@@ -32,13 +36,19 @@ export const OrderForm = ({ data }: OrderFormProps) => {
     validationSchema: orderSchema,
 
     onSubmit: values => {
-      if (data) {
-        dispatch(updateParcel(values));
+      if (isLoggedIn && !isRefreshing) {
+        dispatch(createParcel({ ...values, parcelType: 'order' })).then(resp => {
+          !resp?.error && navigate(ROUTES.REQUESTS);
+        });
         return;
       }
 
-      dispatch(addParcel({ ...values, parcelType: 'order', createdAt: Date.now() }));
-      navigate('/requests');
+      if (data) {
+        dispatch(updateParcel({ values }));
+      } else {
+        dispatch(addParcel({ ...values, parcelType: 'order', createdAt: Date.now() }));
+        navigate(ROUTES.REQUESTS);
+      }
     },
   });
 

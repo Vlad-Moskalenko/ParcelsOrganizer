@@ -7,7 +7,7 @@ export const sortParcelsByDate = (parcels: ParcelState[], sortBy: string) => {
     case 'desc':
       return [...parcels].sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date)) || 0);
     case 'default':
-      return [...parcels].sort((a, b) => b.createdAt - a.createdAt);
+      return [...parcels].sort((a, b) => a.createdAt - b.createdAt);
     default:
       return parcels
   }

@@ -58,13 +58,13 @@ const parcelsSlice = createSlice({
       state.isLoading = false;
     })
     .addCase(deleteParcel.fulfilled, (state, action: PayloadAction<ParcelState>) => {
-      state.parcels = state.parcels.filter(parcel => parcel._id === action.payload._id);
+      state.parcels = state.parcels.filter(parcel => parcel._id !== action.payload._id);
       state.isLoading = false;
     })
-        .addMatcher(
+    .addMatcher(
         action =>
           action.type.startsWith('/parcels') &&
-          action.type.endsWith.endsWith('/pending'),
+          action.type.endsWith('/pending'),
         state => {
           state.isLoading = true;
         }
