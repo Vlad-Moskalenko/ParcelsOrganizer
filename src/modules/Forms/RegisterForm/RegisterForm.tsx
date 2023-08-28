@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { register } from 'src/redux/auth/authOperations';
-import { RegisterSchema } from './registerSchema';
+import { registerSchema } from './registerSchema';
 
 import s from './RegisterForm.module.scss';
 
@@ -19,10 +19,11 @@ export const RegisterForm = () => {
   const formik = useFormik({
     initialValues: INITIAL_STATE,
 
-    validationSchema: RegisterSchema,
+    validationSchema: registerSchema,
 
     onSubmit: values => {
       dispatch(register(values)).then(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (resp: any) => resp?.error && toast.error(resp.payload.response.data.message)
       );
     },
@@ -51,7 +52,11 @@ export const RegisterForm = () => {
         onBlur={handleBlur}
         error={!!errors.name && !!touched.name}
         helperText={!!errors.name && !!touched.name ? errors.name : ''}
-      />
+      >
+        {errors.name && touched.name && (
+          <p style={{ color: 'red', marginTop: '4px' }}>{errors.name}</p>
+        )}
+      </TextField>
       <TextField
         label="Email"
         variant="standard"

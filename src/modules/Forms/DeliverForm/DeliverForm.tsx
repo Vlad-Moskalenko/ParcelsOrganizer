@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 
 import { ParcelState } from 'src/entities/ParcelState';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
+import { deliverSchema } from './deliverSchema';
 
 import s from './DeliverFrom.module.css';
 
 const INITIAL_STATE = {
-  _id: '',
   location: '',
   destination: '',
   date: '',
@@ -20,38 +20,46 @@ type DeliverFormProps = {
 };
 
 export const DeliverForm = ({ data }: DeliverFormProps) => {
-  const [deliverData, setDeliverData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleDeliverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setDeliverData(deliverData => ({ ...deliverData, [name]: value }));
-  };
+  const formik = useFormik({
+    initialValues: INITIAL_STATE,
 
-  const handleDeliverSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (data) {
-      dispatch(updateParcel(deliverData));
-      return;
-    }
+    validationSchema: deliverSchema,
 
-    dispatch(addParcel({ ...deliverData, parcelType: 'deliver', createdAt: Date.now() }));
-    setDeliverData(INITIAL_STATE);
-    navigate('/requests');
-  };
+    onSubmit: values => {
+      if (data) {
+        dispatch(updateParcel(values));
+        return;
+      }
 
-  const { location, destination, date } = deliverData;
+      dispatch(addParcel({ ...values, parcelType: 'deliver', createdAt: Date.now() }));
+      navigate('/requests');
+    },
+  });
+
+  const {
+    values: { location, destination, date },
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = formik;
 
   return (
-    <form className={s.form} onSubmit={handleDeliverSubmit}>
+    <form className={s.form} onSubmit={handleSubmit}>
       <TextField
         label="From city"
         variant="standard"
         fullWidth
         name="location"
         value={location}
-        onChange={handleDeliverChange}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={!!errors.location && !!touched.location}
+        helperText={!!errors.location && !!touched.location ? errors.location : ''}
       />
 
       <TextField
@@ -61,7 +69,10 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
         type="text"
         name="destination"
         value={destination}
-        onChange={handleDeliverChange}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={!!errors.destination && !!touched.destination}
+        helperText={!!errors.destination && !!touched.destination ? errors.destination : ''}
       />
       <TextField
         label="Date"
@@ -70,7 +81,10 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
         type="date"
         name="date"
         value={date}
-        onChange={handleDeliverChange}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={!!errors.date && !!touched.date}
+        helperText={!!errors.date && !!touched.date ? errors.date : ''}
       />
       <Button sx={{ mt: '40px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create deliver'}

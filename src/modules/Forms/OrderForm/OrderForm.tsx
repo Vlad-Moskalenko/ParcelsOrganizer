@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { TextField, FormControl, MenuItem, Select, InputLabel, Button } from '@mui/material';
 import Textarea from '@mui/joy/Textarea';
@@ -8,6 +8,7 @@ import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 
 import s from './OrderFrom.module.scss';
+import { orderSchema } from './orderSchema';
 
 const INITIAL_STATE = {
   _id: '',
@@ -23,41 +24,46 @@ type OrderFormProps = {
 };
 
 export const OrderForm = ({ data }: OrderFormProps) => {
-  const [orderData, setOrderData] = useState(data || INITIAL_STATE);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleOrderChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setOrderData(orderData => ({ ...orderData, [name]: value }));
-  };
+  const formik = useFormik({
+    initialValues: INITIAL_STATE,
 
-  const handleOrderSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    validationSchema: orderSchema,
 
-    if (data) {
-      dispatch(updateParcel(orderData));
-      return;
-    } else {
-      dispatch(addParcel({ ...orderData, parcelType: 'order', createdAt: Date.now() }));
-      setOrderData(INITIAL_STATE);
+    onSubmit: values => {
+      if (data) {
+        dispatch(updateParcel(values));
+        return;
+      }
+
+      dispatch(addParcel({ ...values, parcelType: 'order', createdAt: Date.now() }));
       navigate('/requests');
-    }
-  };
+    },
+  });
 
-  const { location, destination, type, date, description } = orderData;
+  const {
+    values: { location, destination, date, type, description },
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = formik;
 
   return (
-    <form className={s.form} onSubmit={handleOrderSubmit}>
+    <form className={s.form} onSubmit={handleSubmit}>
       <TextField
         label="From city"
         variant="standard"
         fullWidth
         name="location"
         value={location}
-        onChange={handleOrderChange}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={!!errors.location && !!touched.location}
+        helperText={!!errors.location && !!touched.location ? errors.location : ''}
       />
 
       <TextField
@@ -67,7 +73,10 @@ export const OrderForm = ({ data }: OrderFormProps) => {
         type="text"
         name="destination"
         value={destination}
-        onChange={handleOrderChange}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={!!errors.destination && !!touched.destination}
+        helperText={!!errors.destination && !!touched.destination ? errors.destination : ''}
       />
       <TextField
         label="Date"
@@ -76,7 +85,10 @@ export const OrderForm = ({ data }: OrderFormProps) => {
         type="date"
         name="date"
         value={date}
-        onChange={handleOrderChange}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={!!errors.date && !!touched.date}
+        helperText={!!errors.date && !!touched.date ? errors.date : ''}
       />
       <FormControl variant="standard" fullWidth>
         <InputLabel id="type">Type</InputLabel>
@@ -86,7 +98,9 @@ export const OrderForm = ({ data }: OrderFormProps) => {
           label="type"
           name="type"
           value={type}
-          onChange={handleOrderChange}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={!!errors.type && !!touched.type}
         >
           <MenuItem value="gadgets">Gadgets</MenuItem>
           <MenuItem value="drinks">Drinks</MenuItem>
@@ -98,13 +112,13 @@ export const OrderForm = ({ data }: OrderFormProps) => {
       <Textarea
         sx={{ mt: '20px' }}
         minRows={5}
-        type="textarea"
         variant="outlined"
         name="description"
         color="neutral"
-        value={description}
         placeholder="Type some description..."
-        onChange={handleOrderChange}
+        value={description}
+        onChange={handleChange}
+        onBlur={handleBlur}
       />
       <Button sx={{ mt: '20px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create order'}

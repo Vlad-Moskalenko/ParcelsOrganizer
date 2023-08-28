@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { login } from 'src/redux/auth/authOperations';
-import { LoginSchema } from './loginSchema';
+import { loginSchema } from './loginSchema';
 
 import s from './LoginForm.module.scss';
 
@@ -18,10 +18,11 @@ export const LoginForm = () => {
   const formik = useFormik({
     initialValues: INITIAL_STATE,
 
-    validationSchema: LoginSchema,
+    validationSchema: loginSchema,
 
     onSubmit: values => {
       dispatch(login(values)).then(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (resp: any) => resp?.error && toast.error(resp.payload.response.data.message)
       );
     },
@@ -29,7 +30,6 @@ export const LoginForm = () => {
 
   const {
     values: { email, password },
-    isSubmitting,
     errors,
     touched,
     handleBlur,
@@ -65,7 +65,7 @@ export const LoginForm = () => {
         error={!!errors.password && !!touched.password}
         helperText={!!errors.password && !!touched.password ? errors.password : ''}
       />
-      <Button sx={{ mt: '20px' }} variant="contained" type="submit" disabled={isSubmitting}>
+      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
         Login
       </Button>
     </form>
