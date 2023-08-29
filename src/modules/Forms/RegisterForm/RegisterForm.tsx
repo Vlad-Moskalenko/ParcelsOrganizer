@@ -1,7 +1,8 @@
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
+import { ROUTES } from 'src/routes/routes.const';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { register } from 'src/redux/auth/authOperations';
 import { registerSchema } from './registerSchema';
@@ -16,6 +17,7 @@ const INITIAL_STATE = {
 
 export const RegisterForm = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: INITIAL_STATE,
 
@@ -24,7 +26,7 @@ export const RegisterForm = () => {
     onSubmit: values => {
       dispatch(register(values)).then(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (resp: any) => resp?.error && toast.error(resp.payload.response.data.message)
+        (resp: any) => !resp?.error && navigate(ROUTES.REQUESTS)
       );
     },
   });

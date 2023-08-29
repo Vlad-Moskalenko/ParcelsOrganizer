@@ -1,4 +1,6 @@
+import { AxiosError } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { toast } from "react-toastify";
 
 import { axiosInstance } from 'src/services/axiosConfig';
 import { UserState } from "src/entities/UserState";
@@ -8,6 +10,10 @@ interface RootState {
     token: string;
   };
 }
+
+type Error = {
+  message: string;
+};
 
 const token = {
   set(token:string):void {
@@ -25,8 +31,10 @@ const register = createAsyncThunk('auth/register', async (userData: UserState, t
     token.set(data.token)
     return data
   }
-  catch(err){
-    return thunkApi.rejectWithValue(err)
+  catch(e){
+    const err = e as AxiosError<Error>
+    toast.error(err.response?.data.message)
+    return thunkApi.rejectWithValue(e)
   }
 })
 
@@ -36,8 +44,10 @@ const login = createAsyncThunk('auth/login', async (userData: UserState, thunkAp
     token.set(data.token)
     return data
   }
-  catch(err){
-    return thunkApi.rejectWithValue(err)
+  catch(e){
+    const err = e as AxiosError<Error>
+    toast.error(err.response?.data.message)
+    return thunkApi.rejectWithValue(e)
   }
 })
 
@@ -46,8 +56,10 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
     await axiosInstance.post('/auth/logout')
     token.unset()
   }
-  catch(err){
-    return thunkApi.rejectWithValue(err)
+  catch(e){
+    const err = e as AxiosError<Error>
+    toast.error(err.response?.data.message)
+    return thunkApi.rejectWithValue(e)
   }
 })
 
@@ -64,8 +76,10 @@ const current = createAsyncThunk('auth/current', async (_, thunkApi) => {
     const {data} = await axiosInstance.post('/auth/current')
     return data
   }
-  catch(err){
-    return thunkApi.rejectWithValue(err)
+  catch(e){
+    const err = e as AxiosError<Error>
+    toast.error(err.response?.data.message)
+    return thunkApi.rejectWithValue(e)
   }
 })
 
