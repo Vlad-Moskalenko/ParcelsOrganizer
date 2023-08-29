@@ -6,7 +6,6 @@ import { current } from 'src/redux/auth/authOperations';
 import { router } from 'src/routes';
 import { useAppSelector } from 'src/hooks/useAppSelector';
 import { selectToken } from 'src/redux/auth/authSelectors';
-import { Spinner } from '.';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -19,5 +18,5 @@ export const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <RouterProvider router={router} fallbackElement={<Spinner />} />;
+  return <RouterProvider router={router} fallbackElement={<p className="text">Loading...</p>} />;
 };
