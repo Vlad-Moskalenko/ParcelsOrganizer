@@ -1,1 +1,0 @@
-import{j as s,L as e,R as a,O as t}from"./index-69088ad7.js";function r(){return s.jsxs(s.Fragment,{children:[s.jsxs("p",{className:"text",children:["Choose action"," ",s.jsx(e,{className:"link",to:a.CREATE_ORDER,children:"CREATE ORDER"})," ","or"," ",s.jsx(e,{className:"link",to:a.CREATE_DELIVER,children:"CREATE DELIVER"})]}),s.jsx(t,{})]})}export{r as default};

@@ -1,1 +1,0 @@
-import{j as r}from"./index-69088ad7.js";import{O as o}from"./OrderForm-d6cf865c.js";import"./useParcels-ceab1fbe.js";import"./LoadingButton-5be8ed4a.js";function p(){return r.jsx(o,{})}export{p as default};
