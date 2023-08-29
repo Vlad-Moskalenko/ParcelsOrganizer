@@ -1,0 +1,1 @@
+import{j as r}from"./index-69088ad7.js";import{D as o}from"./DeliverForm-2ca6fc14.js";import"./useParcels-ceab1fbe.js";import"./LoadingButton-5be8ed4a.js";function p(){return r.jsx(o,{})}export{p as default};
