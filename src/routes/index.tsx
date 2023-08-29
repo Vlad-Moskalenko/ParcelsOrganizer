@@ -16,7 +16,7 @@ import WelcomeLazyPage from 'src/pages/WelcomePage/WelcomeLazyPage';
 
 export const router = createBrowserRouter([
   {
-    path: '/gotoinc',
+    path: '/',
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
