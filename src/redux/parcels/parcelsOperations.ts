@@ -2,11 +2,17 @@ import { axiosInstance } from "src/services/axiosConfig"
 
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ParcelState } from "src/entities/ParcelState"
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 interface UpdatedData extends Partial<ParcelState> {
   updatedAt?: string;
   owner?: string;
 }
+
+type Error = {
+  message: string;
+};
 
 export const getParcels = createAsyncThunk('parcels/getParcels', async(_, thunkApi) => {
   try{
@@ -14,6 +20,8 @@ export const getParcels = createAsyncThunk('parcels/getParcels', async(_, thunkA
     return data
   }
   catch(e){
+    const err = e as AxiosError<Error>
+    toast.error(err.response?.data.message)
     return thunkApi.rejectWithValue(e)
   }
 })
@@ -24,6 +32,8 @@ export const deleteParcel = createAsyncThunk('parcels/deleteParcel', async(parce
     return data
   }
   catch(e){
+    const err = e as AxiosError<Error>
+    toast.error(err.response?.data.message)
     return thunkApi.rejectWithValue(e)
   }
 })
@@ -36,6 +46,8 @@ export const createParcel = createAsyncThunk(
       return data
     }
     catch(e){
+      const err = e as AxiosError<Error>
+      toast.error(err.response?.data.message)
       return thunkApi.rejectWithValue(e)
     }
 })
@@ -50,6 +62,8 @@ export const editParcel = createAsyncThunk(
       return data
     }
     catch(e){
+      const err = e as AxiosError<Error>
+      toast.error(err.response?.data.message)
       return thunkApi.rejectWithValue(e)
     }
 })
