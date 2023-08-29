@@ -5,7 +5,7 @@ import {
   selectIsLoading,
 } from 'src/redux/parcels/parcelsSelectors';
 
-export const useAuth = () => {
+export const useParcels = () => {
   const isLoading = useAppSelector(selectIsLoading);
   const parcels = useAppSelector(selectParcels);
 

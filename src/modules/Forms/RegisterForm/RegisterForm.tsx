@@ -1,9 +1,11 @@
 import { useFormik } from 'formik';
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { LoadingButton } from '@mui/lab';
 
 import { ROUTES } from 'src/routes/routes.const';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { useAuth } from 'src/hooks/useAuth';
 import { register } from 'src/redux/auth/authOperations';
 import { registerSchema } from './registerSchema';
 
@@ -18,6 +20,8 @@ const INITIAL_STATE = {
 export const RegisterForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { isRefreshing } = useAuth();
+
   const formik = useFormik({
     initialValues: INITIAL_STATE,
 
@@ -85,9 +89,9 @@ export const RegisterForm = () => {
         error={!!errors.password && !!touched.password}
         helperText={!!errors.password && !!touched.password ? errors.password : ''}
       />
-      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
+      <LoadingButton loading={isRefreshing} sx={{ mt: '20px' }} variant="contained" type="submit">
         Register
-      </Button>
+      </LoadingButton>
     </form>
   );
 };

@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
 import { ParcelState } from 'src/entities/ParcelState';
 import { useAuth } from 'src/hooks/useAuth';
@@ -9,6 +10,7 @@ import { createParcel, editParcel } from 'src/redux/parcels/parcelsOperations';
 import { addParcel, updateParcel } from 'src/redux/parcels/parcelsSlice';
 import { deliverSchema } from './deliverSchema';
 import { ROUTES } from 'src/routes/routes.const';
+import { useParcels } from 'src/hooks/useParcels';
 
 import s from './DeliverFrom.module.scss';
 
@@ -26,6 +28,7 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isLoggedIn, isRefreshing } = useAuth();
+  const { isLoading } = useParcels();
 
   const formik = useFormik({
     initialValues: data || INITIAL_STATE,
@@ -100,9 +103,9 @@ export const DeliverForm = ({ data }: DeliverFormProps) => {
           shrink: true,
         }}
       />
-      <Button sx={{ mt: '40px' }} variant="contained" type="submit">
+      <LoadingButton loading={isLoading} sx={{ mt: '40px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create deliver'}
-      </Button>
+      </LoadingButton>
     </form>
   );
 };

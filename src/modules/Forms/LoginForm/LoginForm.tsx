@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
 import { ROUTES } from 'src/routes/routes.const';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
@@ -8,6 +9,7 @@ import { login } from 'src/redux/auth/authOperations';
 import { loginSchema } from './loginSchema';
 
 import s from './LoginForm.module.scss';
+import { useAuth } from 'src/hooks/useAuth';
 
 const INITIAL_STATE = {
   email: '',
@@ -17,6 +19,8 @@ const INITIAL_STATE = {
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { isRefreshing } = useAuth();
+
   const formik = useFormik({
     initialValues: INITIAL_STATE,
 
@@ -25,7 +29,7 @@ export const LoginForm = () => {
     onSubmit: values => {
       dispatch(login(values)).then(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (resp: any) => !resp?.error && navigate(ROUTES.REQUESTS)
+        (resp: any) => !resp?.error && !isRefreshing && navigate(ROUTES.REQUESTS)
       );
     },
   });
@@ -67,9 +71,9 @@ export const LoginForm = () => {
         error={!!errors.password && !!touched.password}
         helperText={!!errors.password && !!touched.password ? errors.password : ''}
       />
-      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
+      <LoadingButton loading={isRefreshing} sx={{ mt: '20px' }} variant="contained" type="submit">
         Login
-      </Button>
+      </LoadingButton>
     </form>
   );
 };

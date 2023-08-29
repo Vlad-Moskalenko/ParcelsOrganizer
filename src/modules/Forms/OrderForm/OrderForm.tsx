@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { TextField, FormControl, MenuItem, Select, InputLabel, Button } from '@mui/material';
+import { TextField, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import Textarea from '@mui/joy/Textarea';
 
 import { useAuth } from 'src/hooks/useAuth';
@@ -12,6 +13,7 @@ import { orderSchema } from './orderSchema';
 import { ROUTES } from 'src/routes/routes.const';
 
 import s from './OrderFrom.module.scss';
+import { useParcels } from 'src/hooks/useParcels';
 
 const INITIAL_STATE: Omit<ParcelState, '_id' | 'createdAt' | 'parcelType'> = {
   location: '',
@@ -29,6 +31,7 @@ export const OrderForm = ({ data }: OrderFormProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isLoggedIn, isRefreshing } = useAuth();
+  const { isLoading } = useParcels();
 
   const formik = useFormik({
     initialValues: data || INITIAL_STATE,
@@ -133,9 +136,9 @@ export const OrderForm = ({ data }: OrderFormProps) => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <Button sx={{ mt: '20px' }} variant="contained" type="submit">
+      <LoadingButton loading={isLoading} sx={{ mt: '20px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create order'}
-      </Button>
+      </LoadingButton>
     </form>
   );
 };
