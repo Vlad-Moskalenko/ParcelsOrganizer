@@ -12,6 +12,7 @@ import OrderLazyPage from '../pages/OrderPage/OrderLazyPage';
 import LoginLazyPage from '../pages/LoginPage/LoginLazyPage';
 import RegisterLazyPage from '../pages/RegisterPage/RegisterLazyPage';
 import ErrorLazyPage from '../pages/ErrorPage/ErrorLazyPage';
+import WelcomeLazyPage from 'src/pages/WelcomePage/WelcomeLazyPage';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorLazyPage />,
     children: [
+      {
+        index: true,
+        element: <WelcomeLazyPage />,
+      },
       {
         path: ROUTES.REQUESTS,
         element: <ParcelsLazyPage />,
