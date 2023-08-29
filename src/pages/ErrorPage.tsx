@@ -1,5 +1,5 @@
 function ErrorPage() {
-  return <div>ErrorPage</div>;
+  return <p className="text">Oops... Something went wrong!</p>;
 }
 
 export default ErrorPage;

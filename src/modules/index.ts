@@ -8,4 +8,5 @@ export {RegisterForm} from './Forms/RegisterForm/RegisterForm';
 
 export {MainLayout} from './Layouts/MainLayout/MainLayout';
 export {ParcelModal} from './Modals';
+export {Spinner} from './UI/Spinner/Spinner';
 export {App} from './App';

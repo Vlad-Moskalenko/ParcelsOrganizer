@@ -55,8 +55,8 @@ const authSlice = createSlice({
     })
     .addMatcher(
         action =>
-          action.type.startsWith('/auth') &&
-          action.type.endsWith.endsWith('/pending'),
+          action.type.startsWith('auth') &&
+          action.type.endsWith('/pending'),
         state => {
           state.isLoggedIn = false;
           state.isRefreshing = true;
@@ -64,7 +64,7 @@ const authSlice = createSlice({
       )
     .addMatcher(
       action =>
-        action.type.startsWith('/auth') && action.type.endsWith('/rejected'),
+        action.type.startsWith('auth') && action.type.endsWith('/rejected'),
       state => {
         state.user = initialState.user;
         state.isLoggedIn = false;

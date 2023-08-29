@@ -39,7 +39,7 @@ export const deleteParcel = createAsyncThunk('parcels/deleteParcel', async(parce
 })
 
 export const createParcel = createAsyncThunk(
-  '/parcels/createParcel',
+  'parcels/createParcel',
   async(parcelData: Omit<ParcelState, '_id' | 'createdAt' >, thunkApi) => {
     try {
       const {data} = await axiosInstance.post('/parcels', {...parcelData})
@@ -53,7 +53,7 @@ export const createParcel = createAsyncThunk(
 })
 
 export const editParcel = createAsyncThunk(
-  '/parcels/editParcel',
+  'parcels/editParcel',
   async(parcelData: UpdatedData, thunkApi) => {
     try {
       // eslint-disable-next-line

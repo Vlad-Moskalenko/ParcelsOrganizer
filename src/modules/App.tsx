@@ -7,6 +7,7 @@ import { current } from 'src/redux/auth/authOperations';
 import { router } from 'src/routes';
 import { useAppSelector } from 'src/hooks/useAppSelector';
 import { selectToken } from 'src/redux/auth/authSelectors';
+import { Spinner } from '.';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -20,8 +21,8 @@ export const App = () => {
   }, [dispatch, token]);
 
   return isRefreshing ? (
-    <p>Loading...</p>
+    <Spinner />
   ) : (
-    <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
+    <RouterProvider router={router} fallbackElement={<Spinner />} />
   );
 };

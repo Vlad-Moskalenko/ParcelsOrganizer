@@ -63,7 +63,7 @@ const parcelsSlice = createSlice({
     })
     .addMatcher(
         action =>
-          action.type.startsWith('/parcels') &&
+          action.type.startsWith('parcels') &&
           action.type.endsWith('/pending'),
         state => {
           state.isLoading = true;
@@ -71,7 +71,7 @@ const parcelsSlice = createSlice({
       )
     .addMatcher(
       action =>
-        action.type.startsWith('/parcels') && action.type.endsWith('/rejected'),
+        action.type.startsWith('parcels') && action.type.endsWith('/rejected'),
       state => {
         state.isLoading = false;
       }

@@ -1,0 +1,17 @@
+.spinnerWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #00000020;
+}
+
+.spinner {
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+}
