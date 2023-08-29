@@ -5,50 +5,50 @@ import { ROUTES } from './routes.const';
 import { MainLayout } from 'src/modules';
 import { RestrictedRoute } from './RestrictedRoutes';
 
-import ParcelsPage from '../pages/ParcelsPage/ParcelsPage';
-import CreateParcelPage from '../pages/CreateParcelPage/CreateParcelPage';
-import DeliverPage from '../pages/DeliverPage/DeliverPage';
-import OrderPage from '../pages/OrderPage/OrderPage';
-import LoginPage from '../pages/LoginPage/LoginPage';
-import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import ParcelsLazyPage from '../pages/ParcelsPage/ParcelsLazyPage';
+import CreateParcelLazyPage from '../pages/CreateParcelPage/CreateParcelLazyPage';
+import DeliverLazyPage from '../pages/DeliverPage/DeliverLazyPage';
+import OrderLazyPage from '../pages/OrderPage/OrderLazyPage';
+import LoginLazyPage from '../pages/LoginPage/LoginLazyPage';
+import RegisterLazyPage from '../pages/RegisterPage/RegisterLazyPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
-import WelcomePage from 'src/pages/WelcomePage/WelcomePage';
+import WelcomeLazyPage from 'src/pages/WelcomePage/WelcomeLazyPage';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/gotoinc',
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <WelcomePage />,
+        element: <WelcomeLazyPage />,
       },
       {
         path: ROUTES.REQUESTS,
-        element: <ParcelsPage />,
+        element: <ParcelsLazyPage />,
       },
       {
         path: ROUTES.CREATE_REQUEST,
-        element: <CreateParcelPage />,
+        element: <CreateParcelLazyPage />,
         children: [
           {
             path: ROUTES.CREATE_ORDER,
-            element: <OrderPage />,
+            element: <OrderLazyPage />,
           },
           {
             path: ROUTES.CREATE_DELIVER,
-            element: <DeliverPage />,
+            element: <DeliverLazyPage />,
           },
         ],
       },
       {
         path: ROUTES.REGISTER,
-        element: <RestrictedRoute redirectTo={ROUTES.REQUESTS} component={RegisterPage} />,
+        element: <RestrictedRoute redirectTo={ROUTES.REQUESTS} component={RegisterLazyPage} />,
       },
       {
         path: ROUTES.LOGIN,
-        element: <RestrictedRoute redirectTo={ROUTES.REQUESTS} component={LoginPage} />,
+        element: <RestrictedRoute redirectTo={ROUTES.REQUESTS} component={LoginLazyPage} />,
       },
     ],
   },
