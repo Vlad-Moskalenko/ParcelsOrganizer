@@ -43,10 +43,10 @@ export const TableItem = ({ data }: TableItemProps) => {
         <TableCell align="left">{type || '-'}</TableCell>
         <TableCell align="left">{description || '-'}</TableCell>
         <TableCell align="right">
-          <IconButton type="button" onClick={() => setIsOpen(true)}>
+          <IconButton aria-label="edit parcel" type="button" onClick={() => setIsOpen(true)}>
             <EditIcon color="primary" />
           </IconButton>
-          <IconButton onClick={handleDeleteClick}>
+          <IconButton aria-label="delete parcel" onClick={handleDeleteClick}>
             <DeleteIcon color="primary" />
           </IconButton>
         </TableCell>
