@@ -77,8 +77,6 @@ const current = createAsyncThunk('auth/current', async (_, thunkApi) => {
     return data
   }
   catch(e){
-    const err = e as AxiosError<Error>
-    toast.error(err.response?.data.message)
     return thunkApi.rejectWithValue(e)
   }
 })

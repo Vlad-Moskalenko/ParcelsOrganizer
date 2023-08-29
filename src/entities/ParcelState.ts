@@ -5,6 +5,6 @@ export type ParcelState = {
   destination: string;
   type?: 'gadgets' | 'drinks' | 'clothes' | 'medicines' | 'other';
   description?: string;
-  date: string;
+  date?: string;
   createdAt: number;
 }

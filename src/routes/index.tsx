@@ -44,11 +44,11 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTES.REGISTER,
-        element: <RestrictedRoute redirectTo="/requests" component={RegisterLazyPage} />,
+        element: <RestrictedRoute redirectTo={ROUTES.REQUESTS} component={RegisterLazyPage} />,
       },
       {
         path: ROUTES.LOGIN,
-        element: <RestrictedRoute redirectTo="/requests" component={LoginLazyPage} />,
+        element: <RestrictedRoute redirectTo={ROUTES.REQUESTS} component={LoginLazyPage} />,
       },
     ],
   },

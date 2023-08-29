@@ -16,7 +16,8 @@ export const App = () => {
     if (token) {
       dispatch(current());
     }
-  }, [dispatch, token]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <RouterProvider router={router} fallbackElement={<Spinner />} />;
 };
