@@ -22,7 +22,11 @@ export const ParcelModal = ({ isOpen, setIsOpen, data }: ModalProps) => {
         <IconButton className={s.closeBtn} aria-label="close" onClick={() => setIsOpen(false)}>
           <CloseIcon />
         </IconButton>
-        {data.parcelType === 'order' ? <OrderForm data={data} /> : <DeliverForm data={data} />}
+        {data.parcelType === 'order' ? (
+          <OrderForm data={data} setIsOpen={setIsOpen} />
+        ) : (
+          <DeliverForm data={data} setIsOpen={setIsOpen} />
+        )}
       </div>
     </Modal>,
     modalRoot as HTMLDivElement

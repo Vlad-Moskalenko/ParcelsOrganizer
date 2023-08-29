@@ -25,9 +25,10 @@ const INITIAL_STATE: Omit<ParcelState, '_id' | 'createdAt' | 'parcelType'> = {
 
 type OrderFormProps = {
   data?: ParcelState;
+  setIsOpen?: (isOpen: boolean) => void;
 };
 
-export const OrderForm = ({ data }: OrderFormProps) => {
+export const OrderForm = ({ data, setIsOpen }: OrderFormProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isLoggedIn, isRefreshing } = useAuth();
@@ -39,17 +40,25 @@ export const OrderForm = ({ data }: OrderFormProps) => {
     validationSchema: orderSchema,
 
     onSubmit: values => {
-      if (isLoggedIn && !isRefreshing && !data) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        dispatch(createParcel({ ...values, parcelType: 'order' })).then((resp: any) => {
-          !resp?.error && navigate(ROUTES.REQUESTS);
-        });
-        return;
-      }
+      if (data && setIsOpen) {
+        if (isLoggedIn) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          dispatch(editParcel({ ...values })).then((resp: any) => {
+            !resp?.error && setIsOpen(false);
+          });
+          return;
+        }
 
-      if (data) {
-        isLoggedIn ? dispatch(editParcel({ ...values })) : dispatch(updateParcel({ ...values }));
+        dispatch(updateParcel({ ...values }));
+        setIsOpen(false);
       } else {
+        if (isLoggedIn && !isRefreshing) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          dispatch(createParcel({ ...values, parcelType: 'order' })).then((resp: any) => {
+            !resp?.error && navigate(ROUTES.REQUESTS);
+          });
+          return;
+        }
         dispatch(addParcel({ ...values, parcelType: 'order', createdAt: Date.now() }));
         navigate(ROUTES.REQUESTS);
       }
