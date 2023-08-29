@@ -9,9 +9,9 @@
   opacity: 0.5;
 
   transition: opacity 0.25s ease-out;
-}
 
-.logoutBtn:hover,
-.logoutBtn:focus {
-  opacity: 1;
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
 }
