@@ -1,4 +1,4 @@
-import { createHashRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from './routes.const';
 
@@ -14,7 +14,7 @@ import RegisterLazyPage from '../pages/RegisterPage/RegisterLazyPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import WelcomeLazyPage from 'src/pages/WelcomePage/WelcomeLazyPage';
 
-export const router = createHashRouter(
+export const router = createBrowserRouter(
   [
     {
       path: '/',
