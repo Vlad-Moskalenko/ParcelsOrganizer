@@ -83,6 +83,7 @@ export const DeliverForm = ({ data, setIsOpen }: DeliverFormProps) => {
         onBlur={handleBlur}
         error={!!errors.location && !!touched.location}
         helperText={!!errors.location && !!touched.location ? errors.location : ''}
+        disabled={isLoading}
       />
 
       <TextField
@@ -96,6 +97,7 @@ export const DeliverForm = ({ data, setIsOpen }: DeliverFormProps) => {
         onBlur={handleBlur}
         error={!!errors.destination && !!touched.destination}
         helperText={!!errors.destination && !!touched.destination ? errors.destination : ''}
+        disabled={isLoading}
       />
       <TextField
         label="Date"
@@ -111,6 +113,7 @@ export const DeliverForm = ({ data, setIsOpen }: DeliverFormProps) => {
         InputLabelProps={{
           shrink: true,
         }}
+        disabled={isLoading}
       />
       <LoadingButton loading={isLoading} sx={{ mt: '40px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create deliver'}

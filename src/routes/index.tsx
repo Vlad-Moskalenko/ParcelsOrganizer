@@ -1,7 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ROUTES } from './routes.const';
-
 import { MainLayout } from 'src/modules';
 import { RestrictedRoute } from './RestrictedRoutes';
 
@@ -13,6 +11,8 @@ import LoginLazyPage from '../pages/LoginPage/LoginLazyPage';
 import RegisterLazyPage from '../pages/RegisterPage/RegisterLazyPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import WelcomeLazyPage from 'src/pages/WelcomePage/WelcomeLazyPage';
+
+import { ROUTES } from './routes.const';
 
 export const router = createBrowserRouter(
   [

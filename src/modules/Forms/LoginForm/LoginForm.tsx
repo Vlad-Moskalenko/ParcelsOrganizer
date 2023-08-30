@@ -57,6 +57,7 @@ export const LoginForm = () => {
         onBlur={handleBlur}
         error={!!errors.email && !!touched.email}
         helperText={!!errors.email && !!touched.email ? errors.email : ''}
+        disabled={isRefreshing}
       />
       <TextField
         label="Password"
@@ -70,6 +71,7 @@ export const LoginForm = () => {
         onBlur={handleBlur}
         error={!!errors.password && !!touched.password}
         helperText={!!errors.password && !!touched.password ? errors.password : ''}
+        disabled={isRefreshing}
       />
       <LoadingButton loading={isRefreshing} sx={{ mt: '20px' }} variant="contained" type="submit">
         Login

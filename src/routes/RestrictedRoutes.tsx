@@ -10,7 +10,8 @@ export const RestrictedRoute = ({
   component: Component,
   redirectTo = '/',
 }: RestrictedRouteProps) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isRefreshing } = useAuth();
+  const shouldRedirect = isLoggedIn && !isRefreshing;
 
-  return isLoggedIn ? <Navigate to={redirectTo} /> : <Component />;
+  return shouldRedirect ? <Navigate to={redirectTo} /> : <Component />;
 };

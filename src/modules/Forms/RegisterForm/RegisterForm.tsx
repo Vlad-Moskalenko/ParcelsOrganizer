@@ -58,6 +58,7 @@ export const RegisterForm = () => {
         onBlur={handleBlur}
         error={!!errors.name && !!touched.name}
         helperText={!!errors.name && !!touched.name ? errors.name : ''}
+        disabled={isRefreshing}
       >
         {errors.name && touched.name && (
           <p style={{ color: 'red', marginTop: '4px' }}>{errors.name}</p>
@@ -75,6 +76,7 @@ export const RegisterForm = () => {
         onBlur={handleBlur}
         error={!!errors.email && !!touched.email}
         helperText={!!errors.email && !!touched.email ? errors.email : ''}
+        disabled={isRefreshing}
       />
       <TextField
         label="Password"
@@ -88,6 +90,7 @@ export const RegisterForm = () => {
         onBlur={handleBlur}
         error={!!errors.password && !!touched.password}
         helperText={!!errors.password && !!touched.password ? errors.password : ''}
+        disabled={isRefreshing}
       />
       <LoadingButton loading={isRefreshing} sx={{ mt: '20px' }} variant="contained" type="submit">
         Register

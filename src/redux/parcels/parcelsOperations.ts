@@ -1,9 +1,9 @@
-import { axiosInstance } from "src/services/axiosConfig"
-
-import { createAsyncThunk } from "@reduxjs/toolkit"
-import { ParcelState } from "src/entities/ParcelState"
-import { toast } from "react-toastify";
 import { AxiosError } from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit"
+import { toast } from "react-toastify";
+
+import { axiosInstance } from "src/services/axiosConfig"
+import { ParcelState } from "src/entities/ParcelState"
 
 interface UpdatedData extends Partial<ParcelState> {
   updatedAt?: string;

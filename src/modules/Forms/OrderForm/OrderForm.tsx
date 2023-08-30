@@ -86,6 +86,7 @@ export const OrderForm = ({ data, setIsOpen }: OrderFormProps) => {
         onBlur={handleBlur}
         error={!!errors.location && !!touched.location}
         helperText={!!errors.location && !!touched.location ? errors.location : ''}
+        disabled={isLoading}
       />
 
       <TextField
@@ -99,6 +100,7 @@ export const OrderForm = ({ data, setIsOpen }: OrderFormProps) => {
         onBlur={handleBlur}
         error={!!errors.destination && !!touched.destination}
         helperText={!!errors.destination && !!touched.destination ? errors.destination : ''}
+        disabled={isLoading}
       />
       <TextField
         label="Date"
@@ -114,6 +116,7 @@ export const OrderForm = ({ data, setIsOpen }: OrderFormProps) => {
         InputLabelProps={{
           shrink: true,
         }}
+        disabled={isLoading}
       />
       <FormControl variant="standard" fullWidth>
         <InputLabel id="type">Type</InputLabel>
@@ -126,6 +129,7 @@ export const OrderForm = ({ data, setIsOpen }: OrderFormProps) => {
           onChange={handleChange}
           onBlur={handleBlur}
           error={!!errors.type && !!touched.type}
+          disabled={isLoading}
         >
           <MenuItem value="gadgets">Gadgets</MenuItem>
           <MenuItem value="drinks">Drinks</MenuItem>
@@ -144,6 +148,7 @@ export const OrderForm = ({ data, setIsOpen }: OrderFormProps) => {
         value={description}
         onChange={handleChange}
         onBlur={handleBlur}
+        disabled={isLoading}
       />
       <LoadingButton loading={isLoading} sx={{ mt: '20px' }} variant="contained" type="submit">
         {data ? 'Submit changes' : 'Create order'}
