@@ -1,4 +1,4 @@
-Hi there! I've already done the test task, hope you will enjoy it and I'm waiting for the feedback
+Hi there! I've already done test task, hope you will enjoy it and I'm waiting for a feedback
 from you=) 
 
 So, according to the test task:
@@ -33,11 +33,16 @@ So, according to the test task:
 - Date of dispatch
 - Parcel description (in case if you create order type request)
 
-6. The application has done using React, Vite, SASS, Material UI, React Router, Redux. Store data
-   should save in LocalStorage and exist after page reload
+6. The application was done using React, Vite, SASS, Material UI, React Router, Redux. Store data
+   should save in LocalStorage and exist after page reload.
 
-+ In additional for CRUD operations with REST API and authorization I've made backend part of
-  application using Node.js, Express, MongoDB and Mongoose.
+*In additional:
+  + was using typescript for typyzation, enhance code quality and error preventation
+  + using Node.js, Express, MongoDB and Mongoose was done backend part of application with CRUD operations and authorization
+  + was using Formik and Yup for form validation
+  + axios for fetching data from backend
+  + react-toastify for displaying error notifications
+
   For login you can register or use my account:
   
   login: vlad.moskalenko1993@gmail.com
