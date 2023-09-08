@@ -54,5 +54,5 @@ export const router = createBrowserRouter(
       ],
     },
   ],
-  { basename: import.meta.env.DEV ? '/' : '/gotoinc/' }
+  { basename: import.meta.env.DEV ? '/' : '/ParcelsOrganizer/' }
 );

@@ -1,52 +1,40 @@
-Hi there! I've already done test task, hope you will enjoy it and I'm waiting for a feedback
-from you=) 
-
-So, according to the test task:
+An application that allows users to create a request for the transportation of your parcel or
+deliver another user's package.
 
 1. Main pages:
 
+- / - welcome page
 - /create - select request type (order or deliver)
 - /create/order - create order request
 - /create/deliver - create delivery request
 - /requests - list of all requests
 
-+ In additional: / - welcome page
+2. The list of requests reflect all user-created requests and the provided information. Users can be
+   able to sort all requests by the date of sending, by default sort by the date of creation of
+   requests.
 
-2. The list of requests must reflect all user-created requests and the provided information. Users
-   can be able to sort all requests by the date of sending, by default sort by the date of creation
-   of requests.
-
-3. The user must be able to edit the request using the dialog window and delete the request.
+3. The user is able to edit the request using the dialog window and delete the request.
 
 4. Request might be one of two types: order and deliver. If a user wants to send a parcel, they
    should create an order type request. In other cases, users can deliver a parcel, and they should
    create a delivery request
 
-5. According to the test task only city from and city to are required input fields. So, it`s
-   unusually, but date of dispatch, parcel description and type of parcel are not required. The
-   request creation form must have the following input fields:
+5. The request creation form have the following input fields:
 
 - The city from which the parcel is sent (required)
 - The city to which the parcel is sent (required)
 - Type of parcel: gadgets, drinks, clothes, medicines, other (in case if you create order type
-  request)
-- Date of dispatch
+  request) (required)
+- Date of dispatch (required)
 - Parcel description (in case if you create order type request)
 
-6. The application was done using React, Vite, SASS, Material UI, React Router, Redux. Store data
-   should save in LocalStorage and exist after page reload.
+6. The application has done using React, Vite, SASS, Material UI, React Router, Redux, LocalStorage.
+   Using Node.js, Express, MongoDB and Mongoose was implementing CRUD operations with REST API and
+   authorization.
 
-*In additional:
-  + was using typescript for typyzation, enhance code quality and error preventation
-  + using Node.js, Express, MongoDB and Mongoose was done backend part of application with CRUD operations and authorization
-  + was using Formik and Yup for form validation
-  + axios for fetching data from backend
-  + react-toastify for displaying error notifications
+For login you can register or use my account:
 
-  For login you can register or use my account:
-  
-  login: vlad.moskalenko1993@gmail.com
-  password: 12345678
+login: vlad.moskalenko1993@gmail.com password: 12345678
 
 start app: npm run dev
 
